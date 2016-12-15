@@ -599,3 +599,376 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 ### RPC Method Name
 `users.loginFB`
 
+
+## Pickup Dropped Item
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "users.pickupItem",
+  "id": "1234",
+  "params": {
+    "userId": "unique-user-id",
+    "itemId": "unique-item-id"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "",
+  "result": {
+    "createdAt": "2016-11-11T19:52:08.000Z",
+    "email": "testing@test.com",
+    "fbId": "98723874623",
+    "id": "6abd8d81-c24d-41a6-bee7-db49efd2c70d",
+    "username": "testingUser",
+    "gender": 0,
+    "age": 28,
+    "city": "Huntington Beach",
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "inventory": {
+      "baseInvCount": 75,
+      "createdAt": "2016-12-10T03:37:36.566Z",
+      "id": "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
+      "items": [
+        {
+          "active": true,
+          "createdAt": "2016-12-14T22:01:59.950Z",
+          "id": "1ce2ede0-57c1-46ad-8a15-dc1c9d9e3293",
+          "invId": "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
+          "item": {
+            "animType": 0,
+            "createdAt": "2016-12-10T03:37:36.574Z",
+            "damage": "M",
+            "description": "UH! apple-pen",
+            "id": "9a3cd94d-79d2-4378-a011-fb68c139191b",
+            "name": "Apple-Pen",
+            "rarity": 3,
+            "type": 0
+          },
+          "itemId": "9a3cd94d-79d2-4378-a011-fb68c139191b"
+        }
+      ],
+      "level": 1,
+      "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+    }
+  }
+}
+```
+
+```json-doc
+
+```
+
+This method is used for a user to pickup a dropped item on the map and add it to their inventory
+
+### RPC Method Name
+`users.pickupItem`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.pickupItem` |
+| params | Object | Contains fields needed to perform the action |
+| params.userId | String | Unique user id attempting to pickup an item |
+| params.itemId | String | Unique id of the item the user is attempting to pickup |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details |
+
+
+## Discard Inventory Items
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "users.trashItems",
+  "id": "1234",
+  "params": {
+    "userId": "unique-user-id",
+    "itemId": "unique-item-id",
+    "quantity": 1
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "",
+  "result": {
+    "createdAt": "2016-11-11T19:52:08.000Z",
+    "email": "testing@test.com",
+    "fbId": "98723874623",
+    "id": "6abd8d81-c24d-41a6-bee7-db49efd2c70d",
+    "username": "testingUser",
+    "gender": 0,
+    "age": 28,
+    "city": "Huntington Beach",
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "inventory": {
+      "baseInvCount": 75,
+      "createdAt": "2016-12-10T03:37:36.566Z",
+      "id": "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
+      "items": [
+        {
+          "active": true,
+          "createdAt": "2016-12-14T22:01:59.950Z",
+          "id": "1ce2ede0-57c1-46ad-8a15-dc1c9d9e3293",
+          "invId": "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
+          "item": {
+            "animType": 0,
+            "createdAt": "2016-12-10T03:37:36.574Z",
+            "damage": "M",
+            "description": "UH! apple-pen",
+            "id": "9a3cd94d-79d2-4378-a011-fb68c139191b",
+            "name": "Apple-Pen",
+            "rarity": 3,
+            "type": 0
+          },
+          "itemId": "9a3cd94d-79d2-4378-a011-fb68c139191b"
+        }
+      ],
+      "level": 1,
+      "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+    }
+  }
+}
+```
+
+```json-doc
+
+```
+
+### RPC Method Name
+`users.trashItems`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.trashItems` |
+| params | Object | Contains fields needed to perform the action |
+| params.userId | String | Unique user id attempting to discard an item |
+| params.itemId | String | Unique item id of the item the user wants to get rid of |
+| params.quantity | Number | A number value representing how many of the specified item the user would like to part with. ___If not provided, currently the API will default to 1___ |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. This is the new representation of the user's inventory, minus the item/s that was just removed |
+
+
+## Get User's Inventory
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "users.getUserInventory",
+  "id": "1234",
+  "params": {
+    "userId": "unique-user-id"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "",
+  "result": {
+    "createdAt": "2016-11-11T19:52:08.000Z",
+    "email": "testing@test.com",
+    "fbId": "98723874623",
+    "id": "6abd8d81-c24d-41a6-bee7-db49efd2c70d",
+    "username": "testingUser",
+    "gender": 0,
+    "age": 28,
+    "city": "Huntington Beach",
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    },
+    "inventory": {
+      "baseInvCount": 75,
+      "createdAt": "2016-12-10T03:37:36.566Z",
+      "id": "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
+      "items": [
+        {
+          "active": true,
+          "createdAt": "2016-12-14T22:01:59.950Z",
+          "id": "1ce2ede0-57c1-46ad-8a15-dc1c9d9e3293",
+          "invId": "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
+          "item": {
+            "animType": 0,
+            "createdAt": "2016-12-10T03:37:36.574Z",
+            "damage": "M",
+            "description": "UH! apple-pen",
+            "id": "9a3cd94d-79d2-4378-a011-fb68c139191b",
+            "name": "Apple-Pen",
+            "rarity": 3,
+            "type": 0
+          },
+          "itemId": "9a3cd94d-79d2-4378-a011-fb68c139191b"
+        }
+      ],
+      "level": 1,
+      "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+    }
+  }
+}
+```
+
+```json-doc
+
+```
+
+This method is used for a user to pickup a dropped item on the map and add it to their inventory
+
+### RPC Method Name
+`users.getUserInventory`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.getUserInventory` |
+| params | Object | Contains fields needed to perform the action |
+| params.userId | String | Unique user id attempting to pickup an item |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details |
+
+
+## Spawn Dropped Items for User
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "users.spawnItems",
+  "id": "1234",
+  "params": {
+    "userId": "unique-user-id"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1",
+  "result": [
+    {
+      "createdAt": "2016-12-15T21:23:46.804Z",
+      "id": "fee38167-eaae-4661-aad2-5eeb80137f18",
+      "item": {
+        "animType": 0,
+        "createdAt": "2016-12-10T03:37:36.574Z",
+        "damage": "XS",
+        "description": "I hab a peeen",
+        "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+        "name": "Pen",
+        "rarity": 1,
+        "type": 0
+      },
+      "itemId": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+      "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+    }
+  ]
+}
+```
+
+```json-doc
+
+```
+
+### RPC Method Name
+`users.spawnItems`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.spawnItems` |
+| params | Object | Contains fields needed to perform the action |
+| params.userId | String | Unique user id attempting to pickup an item |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Array | An list of [InventoryItems](#inventoryitem) with the joined [Item](#item) details in the `item` field |
+
+
