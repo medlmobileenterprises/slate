@@ -87,6 +87,8 @@ This section is dedicated to describing all data models within this application.
 | gender | Number | An enumerated value that will represent the gender of the user. Using enumerated numbers in case we need to support "gender fluidity" |
 | city | String | String representation of the city the user states they reside in or originiated from |
 | extendedBio | Object | An object that will represent more detailed information about a user. Visibility of this field will be bassed on the relationship between user to user. Example ``` { "bio": "I like long walks on the beach", "profileImages": ["file1.jpeg", "file2.jpeg"], "profileImageURLS": ["http://image1.jpeg", "http://image2.jpeg"] } ``` |
+| avatarUpdatedAt | Date |  |
+| inventory | Object | [InventoryModel](#inventory) |
 
 
 ### User -> extendedBio
@@ -141,4 +143,186 @@ This section is dedicated to describing all data models within this application.
 | ---- | ---- | ---- |
 | latitude | Number | Floating point number of the latitude of user's current position. Value between approx -90 & 90 |
 | longitude | Number | Floating point number of the longitude of user's current position. Value between approx -180 & 180 |
+
+
+## Item
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "animType": 0 ,
+    "createdAt":  "2016-12-10T03:37:36.574Z" ,
+    "damage":  "XS" ,
+    "description":  "I hab a peeen" ,
+    "id":  "b03e33cd-9441-4cfe-9f90-631fd650fffd" ,
+    "name":  "Pen" ,
+    "rarity": 1 ,
+    "type": 0,
+    "animColor": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+    }
+}
+```
+
+```json-doc
+{
+    "animType": 0 ,
+    "createdAt":  "2016-12-10T03:37:36.574Z" ,
+    "damage":  "XS" ,
+    "description":  "I hab a peeen" ,
+    "id":  "b03e33cd-9441-4cfe-9f90-631fd650fffd" ,
+    "name":  "Pen" ,
+    "rarity": 1 ,
+    "type": 0,
+    "animColor": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+    }
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| animType | Number |  |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| damage | String |  |
+| description | String |  |
+| id | String |  |
+| name | String |  |
+| rarity | Number |  |
+| type | Number |  |
+| animColor | Object |  |
+
+### Item -> animColor
+
+```json
+{
+    "r": 255,
+    "g": 255,
+    "b": 255
+}
+```
+
+```json-doc
+{
+    "r": 255,
+    "g": 255,
+    "b": 255
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| r | Number |  |
+| g | Number |  |
+| b | Number |  |
+
+
+## Inventory
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "baseInvCount": 75 ,
+    "createdAt":  "2016-12-10T03:37:36.566Z" ,
+    "id":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d" ,
+    "level": 1 ,
+    "userId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+}
+```
+
+```json-doc
+{
+    "baseInvCount": 75 ,
+    "createdAt":  "2016-12-10T03:37:36.566Z" ,
+    "id":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d" ,
+    "level": 1 ,
+    "userId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| baseInvCount | Number | Value that initializes the base/standard amount of inventory space |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| id | String |  |
+| level | Number | To be used later to "expand" the inventory space |
+| userId | String | A reference to the unique-id of the owner of this inventory |
+
+
+## InventoryItem
+
+This table is what can be called an *Auxiliary* table which serves the purpose of linking static data to dynamic logic. Since an inventory can have duplicates of the same ___Item___, this table helps to make duplicates of the same ___Item___ unique in a user's inventory space.
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "active": true ,
+    "createdAt": Wed Dec 14 2016 22:01:59 GMT+00:00 ,
+    "id":  "1ce2ede0-57c1-46ad-8a15-dc1c9d9e3293" ,
+    "invId":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d" ,
+    "itemId":  "9a3cd94d-79d2-4378-a011-fb68c139191b"
+}
+```
+
+```json-doc
+{
+    "active": true ,
+    "createdAt": Wed Dec 14 2016 22:01:59 GMT+00:00 ,
+    "id":  "1ce2ede0-57c1-46ad-8a15-dc1c9d9e3293" ,
+    "invId":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d" ,
+    "itemId":  "9a3cd94d-79d2-4378-a011-fb68c139191b"
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| active | Boolean | Possibly used later to keep item in inventory but make unusable? |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| id | String |  |
+| invId | String | Unique ID reference to the inventory this item should be associated with |
+| itemId | String | Unique ID reference to the item details |
+
+
+## DropItem
+
+This table is what can be called an *Auxiliary* table which serves the purpose of linking static data to dynamic logic. This table will ensure that the `pickupItem` method is only allowing a user to pickup items that have spawned for them.
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "createdAt": Wed Dec 14 2016 22:01:03 GMT+00:00 ,
+    "id":  "a3224d31-db6c-4780-8dfe-d0c61f5cc8a6" ,
+    "itemId":  "b03e33cd-9441-4cfe-9f90-631fd650fffd" ,
+    "userId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+}
+```
+
+```json-doc
+{
+    "createdAt": Wed Dec 14 2016 22:01:03 GMT+00:00 ,
+    "id":  "a3224d31-db6c-4780-8dfe-d0c61f5cc8a6" ,
+    "itemId":  "b03e33cd-9441-4cfe-9f90-631fd650fffd" ,
+    "userId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| id | String |  |
+| itemId | String | Unique ID reference to the item details |
+| userId | String | Unique ID reference to the user that is allowed to claim this item |
+
 
