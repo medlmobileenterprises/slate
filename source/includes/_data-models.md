@@ -222,6 +222,87 @@ This section is dedicated to describing all data models within this application.
 | g | Number |  |
 | b | Number |  |
 
+### Item -> rarityEnum
+
+This Enum relates to `Item`'s `rarity` field. The database will be persisting this value as a number and the API is treating this field as an ENUM. The example JSON object describes the rarity code (value) of each number (key) such that an item returned where `"rarity": 1` means that the item is related to the rarity code "C" meaning "COMMON".
+
+```json
+{
+    "1": "C",
+    "2": "UC",
+    "3": "R",
+    "4": "SR"
+}
+```
+
+```json-doc
+{
+    "1": "C",
+    "2": "UC",
+    "3": "R",
+    "4": "SR"
+}
+```
+
+| Key | Value | Description |
+| ---- | ---- | ---- |
+| 1 | C | Item with `rarity: 1` is a _Common_ item |
+| 2 | UC | Item with `rarity: 2` is an _UnCommon_ item |
+| 3 | R | Item with `rarity: 3` is a _Rare_ item |
+| 4 | SR | Item with `rarity: 4` is a _SuperRare_ item |
+
+### Item -> typeEnum
+
+This Enum relates to `Item`'s `type` field. The database will be persisting this value as a number which the table and example JSON decribe the value that each number represents.
+
+```json
+{
+    "0": "Fruits & Veggies",
+    "1": "Meats",
+    "2": "Alternatives",
+    "3": "Grains",
+    "4": "Herbs & Spices"
+}
+```
+
+```json-doc
+{
+    "0": "Fruits & Veggies",
+    "1": "Meats",
+    "2": "Alternatives",
+    "3": "Grains",
+    "4": "Herbs & Spices"
+}
+```
+
+| Key | Value | Description |
+| ---- | ---- | ---- |
+| 0 | Fruits & Veggies | Item with `type: 0` is a _Fruits & Veggies_ item |
+| 1 | Meats | Item with `type: 1` is a _Meats_ item |
+| 2 | Alternatives | Item with `type: 2` is an _Alternatives_ item |
+| 3 | Grains | Item with `type: 3` is a _Grains_ item |
+| 4 | Herbs & Spices | Item with `type: 4` is a _Herbs & Spices_ item |
+
+### Item -> animType
+
+This Enum relates to `Item`'s `animType` field. The database will be persisting this value as a number which the table and example JSON decribe the value that each number represents.
+___This Enum still needs to be defined as this will be a value the client app is supposed to use for assets saved on the installation___
+```json
+{
+    "0": "Splat1"
+}
+```
+
+```json-doc
+{
+    "0": "Splat1"
+}
+```
+
+| Key | Value | Description |
+| ---- | ---- | ---- |
+| 0 | Splat1 | Item with `animType: 0` will use the _Splat1_ animation |
+
 
 ## Inventory
 
