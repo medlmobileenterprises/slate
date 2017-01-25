@@ -5,6 +5,9 @@ All endpoints will resolve with the following host (domain) name/address:
 `http://localhost:3000`
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Get All Users
 
 ```json
@@ -106,6 +109,9 @@ This endpoint retrieves all users.
 | result | Array | The result of the request. [userModel](#user) |
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Get a Specific User
 
 ```json
@@ -184,6 +190,9 @@ This endpoint uses the userId passed to retrieve the details of a user.
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) |
 
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
 
 ## Register/Create new User
 
@@ -283,6 +292,9 @@ This method is used to create a new user account.
 | result | Object | The result of the request. [userModel](#user) |
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Update User Location
 
 ```json
@@ -379,6 +391,9 @@ This method accepts two parameters `userId` and `location`. The API uses the `us
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) |
 
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
 
 ## Search for targets around User
 
@@ -481,6 +496,10 @@ This method will serve two purposes; it will require a location object with the 
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Array | The result of the request. Array of [userModels](#user) |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
 
 ## Login using Facebook
 
@@ -600,6 +619,9 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 `users.loginFB`
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Pickup Dropped Item
 
 ```json
@@ -699,6 +721,9 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details |
 
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
 
 ## Discard Inventory Items
 
@@ -800,6 +825,9 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. This is the new representation of the user's inventory, minus the item/s that was just removed |
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Get User's Inventory
 
 ```json
@@ -898,6 +926,9 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details |
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Spawn Dropped Items for User
 
 ```json
@@ -972,3 +1003,377 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | result | Array | An list of [InventoryItems](#inventoryitem) with the joined [Item](#item) details in the `item` field |
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Engage A User
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "engagements.engageUser",
+  "id": "1234",
+  "params": {
+    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt": "2017-01-25T01:51:02.600Z",
+    "status": 0,
+    "hits": 0,
+    "misses": 0,
+    "id": "4929a07f-37e0-4d93-8772-4b4738b5b98b"
+  }
+}
+```
+
+```json-doc
+
+```
+
+### RPC Method Name
+`engagements.engageUser`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `engagements.engageUser` |
+| params | Object | Contains fields needed to perform the action |
+| params.fromUId | String | The unique userId who is initiating the Engagement (Battle) |
+| params.toUId | String | The unique userId who the current user is choosing to Engage |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | An [Engagement](#engagement) with the initialized fields |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Update Engagement With User
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "engagements.updateEngagement",
+  "id": "1234",
+  "params": {
+    "engagementId": "781b62f6-860d-4f60-9fe7-c9e7e7881d7a",
+    "isHit": 1,
+    "userId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "itemId": "b03e33cd-9441-4cfe-9f90-631fd650fffd"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "createdAt": "2017-01-25T03:00:37.412Z",
+    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "from_user": {
+      "cirty": "Huntington Beach",
+      "createdAt": "2017-01-11T23:48:18.237Z",
+      "email": "zerosk8er194@gmail.com",
+      "fbId": "10208099895402377",
+      "gender": 0,
+      "id": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+      "inventory": {
+        "baseInvCount": 75,
+        "createdAt": "2017-01-11T23:48:18.273Z",
+        "id": "1bc97fdc-69ee-4aaa-844e-d0cb5c0694aa",
+        "items": [
+          {
+            "active": true,
+            "createdAt": "2017-01-24T01:47:39.025Z",
+            "id": "89341498-28e9-4f82-8dc6-2dcb13e691c0",
+            "invId": "1bc97fdc-69ee-4aaa-844e-d0cb5c0694aa",
+            "item": {
+              "animType": 0,
+              "createdAt": "2016-12-10T03:37:36.574Z",
+              "damage": "XS",
+              "description": "I hab a peeen",
+              "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+              "name": "Pen",
+              "rarity": 1,
+              "type": 0
+            },
+            "itemId": "b03e33cd-9441-4cfe-9f90-631fd650fffd"
+          },
+          {
+            "active": true,
+            "createdAt": "2017-01-24T01:48:27.532Z",
+            "id": "5027a086-5ceb-4117-867b-2e5ff68eafc3",
+            "invId": "1bc97fdc-69ee-4aaa-844e-d0cb5c0694aa",
+            "item": {
+              "animType": 0,
+              "createdAt": "2016-12-10T03:37:36.574Z",
+              "damage": "S",
+              "description": "I hab pineappoo",
+              "id": "f0ed5a51-4a2f-40d8-a931-b6907e52a3f4",
+              "name": "Pineapple",
+              "rarity": 2,
+              "type": 0
+            },
+            "itemId": "f0ed5a51-4a2f-40d8-a931-b6907e52a3f4"
+          },
+          {
+            "active": true,
+            "createdAt": "2017-01-24T01:47:40.471Z",
+            "id": "106b1c61-06fc-4f3c-8de6-0913a28e6b45",
+            "invId": "1bc97fdc-69ee-4aaa-844e-d0cb5c0694aa",
+            "item": {
+              "animType": 0,
+              "createdAt": "2016-12-10T03:37:36.574Z",
+              "damage": "XS",
+              "description": "I hab a peeen",
+              "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+              "name": "Pen",
+              "rarity": 1,
+              "type": 0
+            },
+            "itemId": "b03e33cd-9441-4cfe-9f90-631fd650fffd"
+          },
+          {
+            "active": true,
+            "createdAt": "2017-01-24T01:47:38.018Z",
+            "id": "5a002bd2-02e0-4cb4-8ba5-b9c8f3cb41b5",
+            "invId": "1bc97fdc-69ee-4aaa-844e-d0cb5c0694aa",
+            "item": {
+              "animType": 0,
+              "createdAt": "2016-12-10T03:37:36.574Z",
+              "damage": "XS",
+              "description": "I hab a peeen",
+              "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+              "name": "Pen",
+              "rarity": 1,
+              "type": 0
+            },
+            "itemId": "b03e33cd-9441-4cfe-9f90-631fd650fffd"
+          },
+          {
+            "active": true,
+            "createdAt": "2017-01-24T01:48:01.963Z",
+            "id": "d38cd87e-351f-4434-809e-2bd4a8bbe62b",
+            "invId": "1bc97fdc-69ee-4aaa-844e-d0cb5c0694aa",
+            "item": {
+              "animType": 0,
+              "createdAt": "2016-12-10T03:37:36.574Z",
+              "damage": "XS",
+              "description": "I hab a peeen",
+              "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+              "name": "Pen",
+              "rarity": 1,
+              "type": 0
+            },
+            "itemId": "b03e33cd-9441-4cfe-9f90-631fd650fffd"
+          }
+        ],
+        "level": 1,
+        "userId": "f33ceb35-9847-4d1d-a3d2-dd1649661657"
+      },
+      "username": "shaggydev"
+    },
+    "hits": 1,
+    "id": "781b62f6-860d-4f60-9fe7-c9e7e7881d7a",
+    "misses": 0,
+    "status": 0,
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "updatedAt": "2017-01-25T03:00:51.305Z"
+  }
+}
+```
+
+```json-doc
+
+```
+
+### RPC Method Name
+`engagements.updateEngagement`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `engagements.updateEngagement` |
+| params | Object | Contains fields needed to perform the action |
+| params.engagementId | String | The unique Engagment Id usually retrieved after calling [Engage User](#engage-a-user)|
+| params.isHit | Boolean | A number value representing if the throw was a hit or a miss. Only values allowed are `true` and `false` where `true = Hit` and `false = Miss`.  |
+| params.userId | String | The unique userId of the current user who is fighting |
+| params.itemId | String | The unique itemId of the [Item](#item) object to record what items are being used in the engagement and to make sure to remove an instance of this item from the user's inventory. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | An [Engagement](#engagement) with the updated engagement information. The `fromUser` field will be included containing the user object with the updated inventory and intentory item details.  |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Finish Engagement
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "engagements.finishEngagement",
+  "id": "1234",
+  "params": {
+    "engagementId": "781b62f6-860d-4f60-9fe7-c9e7e7881d7a",
+    "win": true
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "items": [
+      {
+        "createdAt": "2017-01-25T06:05:24.671Z",
+        "id": "93eded1e-a833-49c3-a387-c4d88ee2b746",
+        "item": {
+          "animType": 0,
+          "createdAt": "2016-12-10T03:37:36.574Z",
+          "damage": "S",
+          "description": "I hab a appoo",
+          "id": "decabf42-67b2-45ca-87dc-ee48f8c98116",
+          "name": "Apple",
+          "rarity": 2,
+          "type": 0
+        },
+        "itemId": "decabf42-67b2-45ca-87dc-ee48f8c98116",
+        "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+      },
+      {
+        "createdAt": "2017-01-25T06:05:24.686Z",
+        "id": "7324061e-6543-4ec6-bff3-b1a714563257",
+        "item": {
+          "animType": 0,
+          "createdAt": "2016-12-10T03:37:36.574Z",
+          "damage": "XS",
+          "description": "I hab a peeen",
+          "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+          "name": "Pen",
+          "rarity": 1,
+          "type": 0
+        },
+        "itemId": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+        "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+      },
+      {
+        "createdAt": "2017-01-25T06:05:24.686Z",
+        "id": "70a69caf-dbd0-42bb-afda-2a398c7ab976",
+        "item": {
+          "animType": 0,
+          "createdAt": "2016-12-10T03:37:36.574Z",
+          "damage": "M",
+          "description": "UH! pineapple-pen",
+          "id": "6ab0d79d-b248-4ceb-95b9-958aec277a36",
+          "name": "Pineapple-Pen",
+          "rarity": 3,
+          "type": 0
+        },
+        "itemId": "6ab0d79d-b248-4ceb-95b9-958aec277a36",
+        "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+      }
+    ],
+    "relationship": {
+      "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+      "createdAt": "2017-01-25T03:57:14.925Z",
+      "id": "f9724d2a-6d95-48db-b916-17033010b29b",
+      "lastInitiator": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+      "level": 0,
+      "points": 1,
+      "updatedAt": "2017-01-25T03:57:14.925Z",
+      "userIds": [
+        "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+        "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+      ]
+    }
+  }
+}
+```
+
+```json-doc
+
+```
+
+### RPC Method Name
+`engagements.finishEngagement`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `engagements.finishEngagement` |
+| params | Object | Contains fields needed to perform the action |
+| params.engagementId | String | The unique Engagment Id |
+| params.win | Boolean | True if the engagement was a success; false if it was otherwise not a success |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The is a custom response that will contain two keys: one to represent the list of reward items as `items` that can be picked up using the [PickupItem](#pickup-dropped-item) endpoint, and the other being the [Relationship](#relationship) stored in the field `relationship` |
+| result.items | Array | An array of [Items](#item) that represent a user's "rewards" for engaging with another user. |
+| result.relationship | Object | A [Relationship](#relationship) with the updated relatonship information. |

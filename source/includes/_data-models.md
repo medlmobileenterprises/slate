@@ -407,3 +407,137 @@ This table is what can be called an *Auxiliary* table which serves the purpose o
 | userId | String | Unique ID reference to the user that is allowed to claim this item |
 
 
+## Engagement
+
+Description for this model
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "fromUId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "toUId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "status":  0,
+    "hits":  0,
+    "misses":  0,
+    "win":  false
+}
+```
+
+```json-doc
+{
+    "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
+    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "fromUId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "toUId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "status":  0,
+    "hits":  0,
+    "misses":  0,
+    "win":  false
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| id | String | Unique ID reference to the item details |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| fromUId | String |  |
+| toUId | String |  |
+| status | Number |  |
+| hits | Number |  |
+| misses | Number |  |
+| win | Boolean |  |
+
+
+## Relationship
+
+Description for this model
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "channelName":  "unique-user-id-1_unique-user-id-2",
+    "lastInitiator":  "unique-user-id-1",
+    "points":  0,
+    "level":  0,
+    "userIds": [
+        "unique-user-id-1",
+        "unique-user-id-2"
+    ]
+}
+```
+
+```json-doc
+{
+    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "channelName":  "unique-user-id-1_unique-user-id-2",
+    "lastInitiator":  "unique-user-id-1",
+    "points":  0,
+    "level":  0,
+    "userIds": [
+        "unique-user-id-1",
+        "unique-user-id-2"
+    ]
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| id | String |  |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| channelName | String |  |
+| lastInitiator | String |  |
+| points | Number |  |
+| level | Number |  |
+| userIds | Array |  |
+
+
+## ItemUsed
+
+Description for this model
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "engagementId":  "unique-engagement-id",
+    "userId":  "unique-user-id",
+    "itemId":  "unique-item-id"
+}
+```
+
+```json-doc
+{
+    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "engagementId":  "unique-engagement-id",
+    "userId":  "unique-user-id",
+    "itemId":  "unique-item-id"
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| id | String |  |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| engagementId | String |  |
+| userId | String |  |
+| itemId | String |  |
+
