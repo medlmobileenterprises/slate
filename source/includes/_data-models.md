@@ -6,6 +6,10 @@ This section is dedicated to describing all data models within this application.
 	Not all fields described in these models will be included in all API responses. Each Data model described here will list all possible fields that _could_ be avaialble. Please refer to a specific API method to dertermine what fields will be accessable.
 </aside>
 
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## User
 
 > The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
@@ -144,6 +148,9 @@ This section is dedicated to describing all data models within this application.
 | latitude | Number | Floating point number of the latitude of user's current position. Value between approx -90 & 90 |
 | longitude | Number | Floating point number of the longitude of user's current position. Value between approx -180 & 180 |
 
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
 
 ## Item
 
@@ -304,16 +311,19 @@ ___This Enum still needs to be defined as this will be a value the client app is
 | 0 | Splat1 | Item with `animType: 0` will use the _Splat1_ animation |
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Inventory
 
 > The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
 
 ```json
 {
-    "baseInvCount": 75 ,
-    "createdAt":  "2016-12-10T03:37:36.566Z" ,
-    "id":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d" ,
-    "level": 1 ,
+    "baseInvCount": 75,
+    "createdAt":  "2016-12-10T03:37:36.566Z",
+    "id":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
+    "level": 1,
     "userId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a"
 }
 ```
@@ -321,9 +331,9 @@ ___This Enum still needs to be defined as this will be a value the client app is
 ```json-doc
 {
     "baseInvCount": 75 ,
-    "createdAt":  "2016-12-10T03:37:36.566Z" ,
-    "id":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d" ,
-    "level": 1 ,
+    "createdAt":  "2016-12-10T03:37:36.566Z",
+    "id":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
+    "level": 1,
     "userId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a"
 }
 ```
@@ -338,6 +348,9 @@ ___This Enum still needs to be defined as this will be a value the client app is
 | userId | String | A reference to the unique-id of the owner of this inventory |
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## InventoryItem
 
 This table is what can be called an *Auxiliary* table which serves the purpose of linking static data to dynamic logic. Since an inventory can have duplicates of the same ___Item___, this table helps to make duplicates of the same ___Item___ unique in a user's inventory space.
@@ -347,9 +360,9 @@ This table is what can be called an *Auxiliary* table which serves the purpose o
 ```json
 {
     "active": true ,
-    "createdAt": Wed Dec 14 2016 22:01:59 GMT+00:00 ,
-    "id":  "1ce2ede0-57c1-46ad-8a15-dc1c9d9e3293" ,
-    "invId":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d" ,
+    "createdAt": "2016-12-10T03:37:36.574Z",
+    "id":  "1ce2ede0-57c1-46ad-8a15-dc1c9d9e3293",
+    "invId":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
     "itemId":  "9a3cd94d-79d2-4378-a011-fb68c139191b"
 }
 ```
@@ -357,9 +370,9 @@ This table is what can be called an *Auxiliary* table which serves the purpose o
 ```json-doc
 {
     "active": true ,
-    "createdAt": Wed Dec 14 2016 22:01:59 GMT+00:00 ,
-    "id":  "1ce2ede0-57c1-46ad-8a15-dc1c9d9e3293" ,
-    "invId":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d" ,
+    "createdAt": "2016-12-10T03:37:36.574Z",
+    "id":  "1ce2ede0-57c1-46ad-8a15-dc1c9d9e3293",
+    "invId":  "c6aad8c0-fac2-4112-9f39-24861c7f5a9d",
     "itemId":  "9a3cd94d-79d2-4378-a011-fb68c139191b"
 }
 ```
@@ -374,6 +387,9 @@ This table is what can be called an *Auxiliary* table which serves the purpose o
 | itemId | String | Unique ID reference to the item details |
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## DropItem
 
 This table is what can be called an *Auxiliary* table which serves the purpose of linking static data to dynamic logic. This table will ensure that the `pickupItem` method is only allowing a user to pickup items that have spawned for them.
@@ -382,18 +398,18 @@ This table is what can be called an *Auxiliary* table which serves the purpose o
 
 ```json
 {
-    "createdAt": Wed Dec 14 2016 22:01:03 GMT+00:00 ,
-    "id":  "a3224d31-db6c-4780-8dfe-d0c61f5cc8a6" ,
-    "itemId":  "b03e33cd-9441-4cfe-9f90-631fd650fffd" ,
+    "createdAt": "2016-12-10T03:37:36.574Z",
+    "id":  "a3224d31-db6c-4780-8dfe-d0c61f5cc8a6",
+    "itemId":  "b03e33cd-9441-4cfe-9f90-631fd650fffd",
     "userId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a"
 }
 ```
 
 ```json-doc
 {
-    "createdAt": Wed Dec 14 2016 22:01:03 GMT+00:00 ,
-    "id":  "a3224d31-db6c-4780-8dfe-d0c61f5cc8a6" ,
-    "itemId":  "b03e33cd-9441-4cfe-9f90-631fd650fffd" ,
+    "createdAt": "2016-12-10T03:37:36.574Z",
+    "id":  "a3224d31-db6c-4780-8dfe-d0c61f5cc8a6",
+    "itemId":  "b03e33cd-9441-4cfe-9f90-631fd650fffd",
     "userId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a"
 }
 ```
@@ -407,6 +423,9 @@ This table is what can be called an *Auxiliary* table which serves the purpose o
 | userId | String | Unique ID reference to the user that is allowed to claim this item |
 
 
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Engagement
 
 Description for this model
@@ -416,8 +435,8 @@ Description for this model
 ```json
 {
     "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
-    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
-    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "createdAt":  "2016-12-10T03:37:36.574Z",
+    "updatedAt":  "2016-12-10T03:37:36.574Z",
     "fromUId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a",
     "toUId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a",
     "status":  0,
@@ -430,8 +449,8 @@ Description for this model
 ```json-doc
 {
     "id": "b03e33cd-9441-4cfe-9f90-631fd650fffd",
-    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
-    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "createdAt":  "2016-12-10T03:37:36.574Z",
+    "updatedAt":  "2016-12-10T03:37:36.574Z",
     "fromUId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a",
     "toUId":  "d3b0a471-eb99-42a6-9d87-76299abfd64a",
     "status":  0,
@@ -443,16 +462,19 @@ Description for this model
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
-| id | String | Unique ID reference to the item details |
+| id | String | Uniquely generated Id for the object |
 | createdAt | Date |  |
-| updatedAt | Date |  |
-| fromUId | String |  |
-| toUId | String |  |
-| status | Number |  |
-| hits | Number |  |
-| misses | Number |  |
-| win | Boolean |  |
+| updatedAt | Date | This field will always contain the most recent date the object was modified |
+| fromUId | String | Contains the userId who initiated/started the engagement |
+| toUId | String | Contains the userId of the victim of the engagement |
+| status | Number | An enum value to determine what the state of the engagement is |
+| hits | Number | A count of successful hits |
+| misses | Number | A count of the missed throws |
+| win | Boolean | Determines if this engagement was a success or not |
 
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
 
 ## Relationship
 
@@ -463,8 +485,8 @@ Description for this model
 ```json
 {
     "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
-    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
-    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "createdAt":  "2016-12-10T03:37:36.574Z",
+    "updatedAt":  "2016-12-10T03:37:36.574Z",
     "channelName":  "unique-user-id-1_unique-user-id-2",
     "lastInitiator":  "unique-user-id-1",
     "points":  0,
@@ -479,8 +501,8 @@ Description for this model
 ```json-doc
 {
     "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
-    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
-    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "createdAt":  "2016-12-10T03:37:36.574Z",
+    "updatedAt":  "2016-12-10T03:37:36.574Z",
     "channelName":  "unique-user-id-1_unique-user-id-2",
     "lastInitiator":  "unique-user-id-1",
     "points":  0,
@@ -494,15 +516,18 @@ Description for this model
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
-| id | String |  |
+| id | String | Uniquely generated Id for the object |
 | createdAt | Date |  |
-| updatedAt | Date |  |
-| channelName | String |  |
-| lastInitiator | String |  |
-| points | Number |  |
-| level | Number |  |
-| userIds | Array |  |
+| updatedAt | Date | This field will always contain the most recent date the object was modified |
+| channelName | String | Genereated by the server upon initialization of the relationship. It is a unique channel name for the two users and kept so by simply concatentating the userIds appointed to this relationship, delimited by the underscore '_' character. |
+| lastInitiator | String | This represents the last user to have modified/challenged the other user in the relationship. This field will be null after a successful response from the challenged user |
+| points | Number | A simple counter of successful back-and-forth responses from the two users. After ever 2 points, a level is gained |
+| level | Number | Contains the level of the current relationship |
+| userIds | Array | Conatins an array of strings representing the userIds of the two user's |
 
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
 
 ## ItemUsed
 
@@ -513,8 +538,8 @@ Description for this model
 ```json
 {
     "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
-    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
-    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "createdAt":  "2016-12-10T03:37:36.574Z",
+    "updatedAt":  "2016-12-10T03:37:36.574Z",
     "engagementId":  "unique-engagement-id",
     "userId":  "unique-user-id",
     "itemId":  "unique-item-id"
@@ -524,8 +549,8 @@ Description for this model
 ```json-doc
 {
     "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
-    "createdAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
-    "updatedAt":  Wed Dec 14 2016 22:01:03 GMT+00:00,
+    "createdAt":  "2016-12-10T03:37:36.574Z",
+    "updatedAt":  "2016-12-10T03:37:36.574Z",
     "engagementId":  "unique-engagement-id",
     "userId":  "unique-user-id",
     "itemId":  "unique-item-id"
@@ -534,10 +559,10 @@ Description for this model
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
-| id | String |  |
+| id | String | Uniquely generated Id for the object |
 | createdAt | Date |  |
 | updatedAt | Date |  |
-| engagementId | String |  |
-| userId | String |  |
-| itemId | String |  |
+| engagementId | String | The engagement that this item was used in |
+| userId | String | The userId of the one who used the item |
+| itemId | String | The itemId of the item which was used for details on the item |
 
