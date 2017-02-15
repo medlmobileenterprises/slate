@@ -194,6 +194,190 @@ This endpoint uses the userId passed to retrieve the details of a user.
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
+## Fetch A User Profile
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.fetchUserProfile",
+  "params": {
+    "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+    "callerId": "cc65d388-b816-4d4c-8a79-a9d13c0868a3"
+  }
+}
+```
+
+```json-doc
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "createdAt": "2017-02-13T23:52:40.757Z",
+    "email": "testing001@test.com",
+    "extendedProfile": {
+      "createdAt": "2017-02-13T23:52:40.799Z",
+      "id": "c1d01481-920b-444b-a733-21ee6fa2af69",
+      "profileImages": [
+        {
+          "createdAt": "2017-02-14T00:13:50.267Z",
+          "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
+          "fileExt": ".jpeg",
+          "filename": "interesting",
+          "id": "c6bf71e9-79e1-4b21-841b-d21c5b878e97",
+          "isProfile": true,
+          "order": 0,
+          "updatedAt": "2017-02-14T18:45:44.530Z",
+          "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+          "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/fe883474-f89c-4d60-9017-4f5a7d3bbef2/c6bf71e9-79e1-4b21-841b-d21c5b878e97.jpeg"
+        }
+      ],
+      "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2"
+    },
+    "fbId": "908789324",
+    "id": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+    "username": "testing001"
+  }
+}
+```
+
+```json-doc
+
+```
+
+This method takes in two argmuents `userId` and `calledId`, which are both userIds, and will return a [User](#user) object with the attached [ExtendedProfile](#extendedprofile) information included. The `callerId` will be used with the `userId` to determine the relationship between these two user's to see how much information should be returned of the user by `userId` to the caller by `callerId`. This method supports and expects that a user will be requesting for their own profile, so if `userId` and `callerId` are the same, the check against the relationship will be skipped and will return everything about the user being requested. 
+
+### RPC Method Name
+`users.fetchUserProfile`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.fetchUserProfile` |
+| params | Object | A JSON object that contains the field `userId` with the string value of the unique user id and the field `callerId` with the string value of the userId of the user requesting the other user's information. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The result of the request. [userModel](#user) with [ExtendedProfile](#extendedprofile) attached |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Update User Profile
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.updateProfile",
+  "params": {
+    "data": {
+      "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+      "city": "Irvine",
+      "age": 20,
+      "gender": 0,
+      "inches": 70,
+      "bio": "This is a stupid ass bio"
+    }
+  }
+}
+```
+
+```json-doc
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "createdAt": "2016-08-01T20:59:37.000Z",
+    "email": "integrationtesting@gmail.com",
+    "extendedProfile": {
+      "age": 20,
+      "bio": "This is a stupid bio",
+      "city": "Irvine",
+      "createdAt": "2017-02-14T08:51:37.278Z",
+      "id": "653fecdc-b858-45cb-9e57-a02eaafdf4a9",
+      "inches": 70,
+      "profileImages": [
+        {
+          "createdAt": "2017-02-14T08:51:37.437Z",
+          "extendedProfileId": "653fecdc-b858-45cb-9e57-a02eaafdf4a9",
+          "fileExt": ".jpeg",
+          "filename": "interesting",
+          "id": "17da7c59-0aa6-43e2-a2d4-67a6dad11d73",
+          "isProfile": false,
+          "order": 0,
+          "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+        }
+      ],
+      "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+    },
+    "fbId": "9000",
+    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "location": {
+      "latitude": 33.650928,
+      "longitude": -117.714303
+    },
+    "username": "JumpNShoot"
+  }
+}
+```
+
+```json-doc
+
+```
+
+This method is used to update a user's profile information. The only fields that will be updated are those that are specified in the request. The request takes in a single argument called `data` that could contain the several different fields to update. The `userId` field is the only **Required** field and if not included will throw an error in the body of the response. The method will return the full user profile including `profileImages` and should contain the changes added in the request.
+
+### RPC Method Name
+`users.updateProfile`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.updateProfile` |
+| params | Object | A JSON object that contains the field `data` where `data` is an Object where the keys passed will be directly related to the fields in the [ExtendedProfile](#extendedprofile) object to update and the values of these keys will be the new value to update the profile with. `data.userId` is the only required field in this request. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The result of the request. [userModel](#user) with [ExtendedProfile](#extendedprofile) attached |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Register/Create new User
 
 ```json
@@ -203,7 +387,7 @@ This endpoint uses the userId passed to retrieve the details of a user.
 ```json
 {
   "jsonrpc": "2.0",
-  "method": "users.fetchUser",
+  "method": "users.registerUser",
   "id": "1234",
   "params": {
     "userData": {
@@ -1377,3 +1561,163 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | result | Object | The is a custom response that will contain two keys: one to represent the list of reward items as `items` that can be picked up using the [PickupItem](#pickup-dropped-item) endpoint, and the other being the [Relationship](#relationship) stored in the field `relationship` |
 | result.items | Array | An array of [Items](#item) that represent a user's "rewards" for engaging with another user. |
 | result.relationship | Object | A [Relationship](#relationship) with the updated relatonship information. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Replace Profile Image
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "users.updateProfileImage",
+  "id": "1234",
+  "params": {
+    "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+    "fileId": "c6bf71e9-79e1-4b21-841b-d21c5b878e97"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "createdAt": "2017-02-14T00:13:50.267Z",
+    "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
+    "fileExt": ".jpeg",
+    "filename": "interesting",
+    "id": "c6bf71e9-79e1-4b21-841b-d21c5b878e97",
+    "isProfile": true,
+    "order": 0,
+    "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2"
+  }
+}
+```
+
+```json-doc
+
+```
+
+This method is used to change the user's main profile picture to another picture that they have already uploaded and exists in their list of profileImages in their [ExtendedProfile](#extendedprofile). This method will throw an error if the API finds that the fileId passed is not owned by the user with the userId specified in the request.
+
+### RPC Method Name
+`users.updateProfileImage`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.updateProfileImage` |
+| params | Object | Contains fields needed to perform the action |
+| params.userId | String | The unique user Id whom wants to update their main profile image to a new one |
+| params.fileId | String | The unique fileUploadId from the user's list of profileImages to promote to the main profile image. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The is a custom response that will contain two keys: one to represent the list of reward items as `items` that can be picked up using the [PickupItem](#pickup-dropped-item) endpoint, and the other being the [Relationship](#relationship) stored in the field `relationship` |
+| result.items | Array | An array of [Items](#item) that represent a user's "rewards" for engaging with another user. |
+| result.relationship | Object | A [Relationship](#relationship) with the updated relatonship information. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Upload Profile Image
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"POST /api/users/:unique-user-id/upload-avatar HTTP/1.1 Content-Type: multipart/form-data"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": {
+    "createdAt": "2017-02-13T23:52:40.757Z",
+    "email": "testing001@test.com",
+    "extendedProfile": {
+      "createdAt": "2017-02-13T23:52:40.799Z",
+      "id": "c1d01481-920b-444b-a733-21ee6fa2af69",
+      "profileImages": [
+        {
+          "createdAt": "2017-02-14T00:13:50.267Z",
+          "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
+          "fileExt": ".jpeg",
+          "filename": "interesting",
+          "id": "c6bf71e9-79e1-4b21-841b-d21c5b878e97",
+          "isProfile": true,
+          "order": 0,
+          "updatedAt": "2017-02-14T18:45:44.530Z",
+          "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+          "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/fe883474-f89c-4d60-9017-4f5a7d3bbef2/c6bf71e9-79e1-4b21-841b-d21c5b878e97.jpeg"
+        },
+        {
+          "createdAt": "2017-02-14T01:31:34.267Z",
+          "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
+          "fileExt": ".png",
+          "filename": "hylian_shield",
+          "id": "0f4a40ae-14d6-4c24-b3c1-dccb535249be",
+          "isProfile": false,
+          "order": 0,
+          "updatedAt": "2017-02-14T18:46:36.564Z",
+          "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+          "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/fe883474-f89c-4d60-9017-4f5a7d3bbef2/0f4a40ae-14d6-4c24-b3c1-dccb535249be.png"
+        }
+      ],
+      "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2"
+    },
+    "fbId": "908789324",
+    "id": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+    "username": "testing001"
+  }
+}
+```
+
+This method is used to upload a profile image for a user. This method can only be made through a RESTful POST call using the `Content-Type: multipart/form-data` header. The only field that needs to be sent as form data is the `avatar` field with the value of the file to be uploading in multipart fashion. If successful, the response will contain the full user profile with the newly added [FileUpload](#fileupload) object representing the new upload among any others that have already been uploaded, all containing their respective `imageUrl` fields already generated.
+
+### RESTful path
+`/api/users/:userId/upload-avatar`
+
+### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| fileUploadId | String | **Optional** The unique fileUploadId from the user's list of profileImages to update with the new image. Only use this if we are going to support replacing a file instead of Deleting the file first then creating a new one. |
+| avatar | File | **REQUIRED** The unique fileUploadId from the user's list of profileImages to promote to the main profile image. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | [User](#user) | Upon success, the result will contain the full [User](#user) object with the [ExtendedProfile](#extendedprofile) in the `extendedProfile` field and inside this object will be a list of `profileImages` with [FileUpload](#fileupload) as their object representation |

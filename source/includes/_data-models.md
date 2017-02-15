@@ -22,23 +22,9 @@ This section is dedicated to describing all data models within this application.
     "email": "thingy1@gmail.com",
     "fbId": "10207332672302279",
     "username": "catinthehat",
-    "avatarFilename": "testing.jpeg",
-    "avatarURL": "https://s3.amazonaws.com/gotchuu/dev/users/avatars/testing.jpeg",
     "location": {
     	"latitude": 33.123123,
     	"longitude": -113.123213
-    },
-    "age": 21,
-    "gender": 0,
-    "city": "Huntington Beach",
-    "extendedBio": {
-    	"bio": "I like long walks on the beach",
-    	"profileImage": [
-    		"image1.jpeg"
-    	],
-    	"profileImageURLS": [
-    		"http://something.anything.com/image1.jpeg"
-    	]
     }
 }
 ```
@@ -51,23 +37,9 @@ This section is dedicated to describing all data models within this application.
     "email": "thingy1@gmail.com",
     "fbId": "10207332672302279",
     "username": "catinthehat",
-    "avatarFilename": "testing.jpeg",
-    "avatarURL": "https://s3.amazonaws.com/gotchuu/dev/users/avatars/testing.jpeg",
     "location": {
     	"latitude": 33.123123,
     	"longitude": -113.123213
-    },
-    "age": 21,
-    "gender": 0,
-    "city": "Huntington Beach",
-    "extendedBio": {
-    	"bio": "I like long walks on the beach",
-    	"profileImage": [
-    		"image1.jpeg"
-    	],
-    	"profileImageURLS": [
-    		"http://something.anything.com/image1.jpeg"
-    	]
     }
 }
 ```
@@ -82,50 +54,10 @@ This section is dedicated to describing all data models within this application.
 | salt | String | Hidden field that is used for the hashing of the password |
 | fbId | String | The facebook Id of the user upon registration |
 | username | String | The username the user provided for display purposes |
-| avatarFilename | String | Holds the name of the file uploaded for this user's avatar image. |
-| avatarURL | String | A non-persisted field that contains a generated URL that points to the hosted avatar image |
 | location | Object | A simple object that contains the `longitude` and `latitude` fields. Example: ``` { "longitude": -113.17379, "latitude":  33.32983 } ``` |
 | curPoint | GeoPoint | Persisted field, but hidden from client view. This is a field used primarily by the databse to effiecintly run geospatial queries |
-| birthdate | Date | Date object that represents the birthdate of the user. Used to derive the current user's age |
-| age | Number | Non-persisted field that will hold the derived age value of the user based on birthdate |
-| gender | Number | An enumerated value that will represent the gender of the user. Using enumerated numbers in case we need to support "gender fluidity" |
-| city | String | String representation of the city the user states they reside in or originiated from |
-| extendedBio | Object | An object that will represent more detailed information about a user. Visibility of this field will be bassed on the relationship between user to user. Example ``` { "bio": "I like long walks on the beach", "profileImages": ["file1.jpeg", "file2.jpeg"], "profileImageURLS": ["http://image1.jpeg", "http://image2.jpeg"] } ``` |
-| avatarUpdatedAt | Date |  |
 | inventory | Object | [InventoryModel](#inventory) |
-
-
-### User -> extendedBio
-
-```json
-{
-	"bio": "I like long walks on the beach",
-	"profileImage": [
-		"image1.jpeg"
-	],
-	"profileImageURLS": [
-		"http://something.anything.com/image1.jpeg"
-	]    
-}
-```
-
-```json-doc
-{
-	"bio": "I like long walks on the beach",
-	"profileImage": [
-		"image1.jpeg"
-	],
-	"profileImageURLS": [
-		"http://something.anything.com/image1.jpeg"
-	]    
-}
-```
-
-| Parameter | Type | Description |
-| ---- | ---- | ---- |
-| bio | String | Long description user provides to describe themselves in words |
-| profileImages | Array<String> | Persisted field of image names to represent what files the user has uploaded |
-| profileImageURLS | Array<String> | Non-persisted field that is generated based off profiledImages |
+| extendedProfile | Object | [ExtendedProfileModel](#extendedprofile) |
 
 ### User -> location
 
@@ -565,4 +497,111 @@ Description for this model
 | engagementId | String | The engagement that this item was used in |
 | userId | String | The userId of the one who used the item |
 | itemId | String | The itemId of the item which was used for details on the item |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## ExtendedProfile
+
+Additional user information that is accessible based on certain properties on relationships
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt": "2016-12-10T03:37:36.574Z",
+    "updatedAt": "2016-12-10T03:37:36.574Z",
+    "bio": "Some type of description of one's self",
+    "inches": 60,
+    "age": 21,
+    "birthdate": "2016-12-10T03:37:36.574Z",
+    "city": "Nowhere City",
+    "gender": 0,
+    "userId": "unique-item-id"
+}
+```
+
+```json-doc
+{
+    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt": "2016-12-10T03:37:36.574Z",
+    "updatedAt": "2016-12-10T03:37:36.574Z",
+    "bio": "Some type of description of one's self",
+    "inches": 60,
+    "age": 21,
+    "birthdate": "2016-12-10T03:37:36.574Z",
+    "city": "Nowhere City",
+    "gender": 0,
+    "userId": "unique-item-id"
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| id | String | Uniquely generated Id for the object |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| bio | String | This is a plain string that the user enters to describe themselves |
+| inches | Number | This will represent the user's height in inches. |
+| age | Number | A number to represent the user's age |
+| birthdate | Date | A date value that represents the date the user would have been born. This value could be used to dynamically update the user's age value. |
+| city | String | A string value to represent the name of the city the user comes from |
+| gender | Number | A simple number enumerator to represent a gender type: `Male = 0; Female = 1` |
+| userId | String | The unique id of the user who owns this extended profile |
+| profileImages | Object[] | A list of [FileUploads](#fileupload) that the user uploaded for their profile. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## FileUpload
+
+This is the object representation of the file that was uploaded for a give user.
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "createdAt": "2017-02-14T00:13:50.267Z",
+    "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
+    "fileExt": ".jpeg",
+    "filename": "interesting",
+    "id": "c6bf71e9-79e1-4b21-841b-d21c5b878e97",
+    "isProfile": true,
+    "order": 0,
+    "updatedAt": "2017-02-14T18:45:44.530Z",
+    "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+    "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/fe883474-f89c-4d60-9017-4f5a7d3bbef2/c6bf71e9-79e1-4b21-841b-d21c5b878e97.jpeg"
+}
+```
+
+```json-doc
+{
+    "createdAt": "2017-02-14T00:13:50.267Z",
+    "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
+    "fileExt": ".jpeg",
+    "filename": "interesting",
+    "id": "c6bf71e9-79e1-4b21-841b-d21c5b878e97",
+    "isProfile": true,
+    "order": 0,
+    "updatedAt": "2017-02-14T18:45:44.530Z",
+    "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+    "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/fe883474-f89c-4d60-9017-4f5a7d3bbef2/c6bf71e9-79e1-4b21-841b-d21c5b878e97.jpeg"
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| id | String | Uniquely generated Id for the object |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| extendedProfileId | String | This is the unique id of a user's extended profile that his file should be associated with |
+| fileExt | String | This is the file extension that was found for the file uploaded. Used in the generation of the imageUrl |
+| filename | String | The original name of the file that was uploaded. |
+| isProfile | Boolean | A boolean value to represnt that this file uploaded should represent the user's main profile picture |
+| order | Number | An arbitrary value to use in case we need to implement arbitrary ordering of images |
+| userId | String | The unique user id of the user who owns this file |
+| imageUrl | String | A generated url field that will point to the current hosted location of the file |
 
