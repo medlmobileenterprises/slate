@@ -135,9 +135,12 @@ This section is dedicated to describing all data models within this application.
 | name | String |  |
 | rarity | Number |  |
 | type | Number |  |
-| animColor | Object |  |
+| image | String |  |
+| particleColor | String |  |
+| splatColor | String |  |
+| bitsColor | String |  |
 
-### Item -> animColor
+### Item -> particleColor, splatColor, bitsColor
 
 ```json
 {
@@ -605,3 +608,50 @@ This is the object representation of the file that was uploaded for a give user.
 | userId | String | The unique user id of the user who owns this file |
 | imageUrl | String | A generated url field that will point to the current hosted location of the file |
 
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Chat
+
+This is the object representation of Chat messages stored in the database
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt": "2017-02-25T08:33:48.387Z",
+    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "id": "32d3f620-0a4f-4fb2-ae3b-1475df1b05af",
+    "message": "Hello world",
+    "read": false,
+    "timeStamp": "2017-02-25T08:33:48.365Z",
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+}
+```
+
+```json-doc
+{
+    "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt": "2017-02-25T08:33:48.387Z",
+    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "id": "32d3f620-0a4f-4fb2-ae3b-1475df1b05af",
+    "message": "Hello world",
+    "read": false,
+    "timeStamp": "2017-02-25T08:33:48.365Z",
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| id | String | Uniquely generated Id for the object. |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| channelName | String | Represents the name of the pubnub channel users should subscribe to receive messages. |
+| fromUId | String | The sender of the message. |
+| toUId | String | The receiver of the message. |
+| message | String | The contents of the message |
+| read | Boolean | This is the status of the message for the `toUser`. This fields helps to determine if a user has any unread messages and if their conversation should be badged or not. |
+| timeStamp | Date | This is the moment in time that the message was sent. This will help to order and paginate any response to get a list of past messages |

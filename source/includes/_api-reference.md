@@ -651,7 +651,8 @@ This method accepts two parameters `userId` and `location`. The API uses the `us
         "latitude": 0,
         "longitude": 0
       },
-      "username": "blargasaurus"
+      "username": "blargasaurus",
+      "profileImages": [{}]
     }
   ]
 }
@@ -679,7 +680,7 @@ This method will serve two purposes; it will require a location object with the 
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
-| result | Array | The result of the request. Array of [userModels](#user) |
+| result | Array | The result of the request. Array of [userModels](#user). Within each of the user objects, a field `profileImages` will exist which will contain a single [FileUpload](#file-upload) object which should be the main profile image information. |
 
 
 [//]: # (==================================================================================================)
@@ -721,7 +722,6 @@ This method will serve two purposes; it will require a location object with the 
   "jsonrpc": "2.0",
   "id": "1",
   "result": {
-    "avatarFilename": "testing.jpeg",
     "createdAt": "2016-11-11T19:52:08.000Z",
     "email": "thingy1@gmail.com",
     "fbId": "10207332672302279",
@@ -730,7 +730,9 @@ This method will serve two purposes; it will require a location object with the 
       "latitude": 0,
       "longitude": 0
     },
-    "username": "blargasaurus"
+    "username": "blargasaurus",
+    "inventory": {},
+    "extendedProfile": {}
   }
 }
 ```
@@ -739,7 +741,6 @@ This method will serve two purposes; it will require a location object with the 
 {
   "success": true,
   "result": {
-    "avatarFilename": "testing.jpeg",
     "createdAt": "2016-11-11T19:52:08.000Z",
     "email": "thingy1@gmail.com",
     "fbId": "10207332672302279",
@@ -748,7 +749,9 @@ This method will serve two purposes; it will require a location object with the 
       "latitude": 0,
       "longitude": 0
     },
-    "username": "blargasaurus"
+    "username": "blargasaurus",
+    "inventory": {},
+    "extendedProfile": {}
   }
 }
 ```
@@ -801,6 +804,24 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 
 ### RPC Method Name
 `users.loginFB`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.loginFB` |
+| params | Object | Contains fields needed to perform the action |
+| params.body.access_token | String | Facebook access token from client login to find user account with |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. Also includes the complete [ExtendedProfile](#extended-profile) for a found user with facebook login. |
 
 
 [//]: # (==================================================================================================)
@@ -1633,9 +1654,7 @@ This method is used to change the user's main profile picture to another picture
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
-| result | Object | The is a custom response that will contain two keys: one to represent the list of reward items as `items` that can be picked up using the [PickupItem](#pickup-dropped-item) endpoint, and the other being the [Relationship](#relationship) stored in the field `relationship` |
-| result.items | Array | An array of [Items](#item) that represent a user's "rewards" for engaging with another user. |
-| result.relationship | Object | A [Relationship](#relationship) with the updated relatonship information. |
+| result | Object | This method returns a [User](#user) model representing the full updated user profile which includes the full [ExtendedProfile](#extended-profile) with [FileUploads](#file-uploads) in the `profileImages` field of the `extendedProfile` |
 
 
 [//]: # (==================================================================================================)
@@ -1721,3 +1740,669 @@ This method is used to upload a profile image for a user. This method can only b
 | ---- | ---- | ---- |
 | success | Boolean | If successful, this value will be true |
 | result | [User](#user) | Upon success, the result will contain the full [User](#user) object with the [ExtendedProfile](#extendedprofile) in the `extendedProfile` field and inside this object will be a list of `profileImages` with [FileUpload](#fileupload) as their object representation |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Select User On Map
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.selectUserOnMap",
+  "params": {
+    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "createdAt": "2016-08-01T20:59:37.000Z",
+    "email": "integrationtesting@gmail.com",
+    "extendedProfile": {
+      "age": 20,
+      "bio": "This is a stupid ass bio",
+      "city": "Irvine",
+      "createdAt": "2017-02-14T08:51:37.278Z",
+      "id": "653fecdc-b858-45cb-9e57-a02eaafdf4a9",
+      "inches": 70,
+      "profileImages": [
+        {
+          "createdAt": "2017-02-14T08:51:37.437Z",
+          "extendedProfileId": "653fecdc-b858-45cb-9e57-a02eaafdf4a9",
+          "fileExt": ".jpeg",
+          "filename": "interesting",
+          "id": "17da7c59-0aa6-43e2-a2d4-67a6dad11d73",
+          "isProfile": false,
+          "order": 0,
+          "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+          "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/d3b0a471-eb99-42a6-9d87-76299abfd64a/17da7c59-0aa6-43e2-a2d4-67a6dad11d73.jpeg"
+        }
+      ],
+      "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+    },
+    "fbId": "9000",
+    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "location": {
+      "latitude": 33.650928,
+      "longitude": -117.714303
+    },
+    "username": "JumpNShootMan",
+    "relationship": {
+      "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+      "createdAt": "2017-01-25T03:57:14.925Z",
+      "id": "f9724d2a-6d95-48db-b916-17033010b29b",
+      "lastInitiator": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+      "level": 3,
+      "points": 7,
+      "updatedAt": "2017-02-16T19:11:23.756Z",
+      "userIds": [
+        "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+        "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+      ]
+    }
+  }
+}
+```
+
+```json-doc
+
+```
+
+The purpose of this method is to easily provide user profile information along side information about the potential relationship between the requesting user and the target user.
+
+### RPC Method Name
+`users.selectUserOnMap`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.selectUserOnMap` |
+| params | Object | Contains fields needed to perform the action |
+| params.fromUId | String | The unique Id of the user who is requesting the information on a user from the map view. |
+| params.toUId | String | The unique Id of the user who was found on the map and should be the subject of the response. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The result of this function will be an object representing the [User](#user) which will contain the [ExtendedProfile](#extended-profile) information based on the level of the relationship. The user model will contain a custom key `realtionship` which will contain the relationship object between the two given users. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Fetch New Challenges For User
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "relationships.fetchNewConnections",
+  "params": {
+    "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": [
+    {
+      "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+      "createdAt": "2017-01-25T03:57:14.925Z",
+      "id": "f9724d2a-6d95-48db-b916-17033010b29b",
+      "lastInitiator": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+      "level": 2,
+      "points": 7,
+      "updatedAt": "2017-03-08T19:56:27.369Z",
+      "userIds": [
+        "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+        "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+      ]
+    }
+  ]
+}
+```
+
+```json-doc
+
+```
+
+The purpose of this method is to retrieve a list of new connections for a given user. A new connection is defined as a relationship between two users where the `lastInitiator` field of the relationship object is NOT null AND is NOT the requesting user's Id. In short, a new connetions is defined as a fight that the other use has initiated towards the userId specified in the request. See [Relationship](#relationship) for field reference.
+
+### RPC Method Name
+`relationships.fetchNewConnections`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `relationships.fetchNewConnections`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.userId | String | The unique Id of the user with which to retrieve the list of new connections for. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Array | The result is an Array of [Relationship](#relationship) objects where the `lastInitiator` id is NOT the requesting userId (in other words, relationships where challenges are directed towards the userId specified in the request). |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Ignore Challenge
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "relationships.ignoreChallenge",
+  "params": {
+    "relationshipId": "f9724d2a-6d95-48db-b916-17033010b29b",
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "createdAt": "2017-01-25T03:57:14.925Z",
+    "id": "f9724d2a-6d95-48db-b916-17033010b29b",
+    "lastInitiator": null,
+    "level": 2,
+    "points": 6,
+    "updatedAt": "2017-02-16T19:11:23.756Z",
+    "userIds": [
+      "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+      "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+    ]
+  }
+}
+```
+
+```json-doc
+
+```
+
+The purpose of this method is to provide a way for a user to "ignore" a user's fight challenge and reset the state of the relationship back to a place where either user can now initiate the progression of the relationship.
+
+### RPC Method Name
+`relationships.ignoreChallenge`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `relationships.ignoreChallenge`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.relationshipId | String | The unique Id of the relationship that the two users belong to and that the new challenge is associated with. |
+| params.toUId | String | The unique Id of the user who has been challenged and is ellecting to "ignore" this challenge attempt. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | The result of this method is an updated [Relationship](#relationship) object to signify that the "ignore" was successful. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Fetch All Conversations/Relationships
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.selectUserOnMap",
+  "params": {
+    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": [
+    {
+      "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+      "createdAt": "2017-01-25T03:58:10.056Z",
+      "id": "e749e8ff-8260-484b-bef9-46a5fa3a4703",
+      "level": 1,
+      "points": 2,
+      "lastInitiator": null,
+      "userIds": [
+        "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+        "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+      ],
+      "user": {
+        "createdAt": "2017-01-11T23:48:18.237Z",
+        "email": "zerosk8er194@gmail.com",
+        "fbId": "10208099895402377",
+        "id": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+        "profileImages": [],
+        "username": "shaggydev"
+      },
+      "latestChat": [
+        {
+          "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+          "createdAt": "2017-02-25T08:33:48.387Z",
+          "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+          "id": "32d3f620-0a4f-4fb2-ae3b-1475df1b05af",
+          "message": "Back At you MAN!",
+          "read": false,
+          "timeStamp": "2017-02-25T08:33:48.365Z",
+          "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+        }
+      ]
+    }
+  ]
+}
+```
+
+```json-doc
+
+```
+
+The purpose of this method is to return a list of relationships that a user belongs to and provide all information to populate a Conversation View.
+
+### RPC Method Name
+`relationships.fetchUserChatView`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `relationships.fetchUserChatView` |
+| params | Object | Contains fields needed to perform the action |
+| params.userId | String | The unique Id of the user who is requesting their list of conversations/relationships. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The result of this function will be an Array of objects with each object representing the [Relationship](#relationship) model with a joined [User](#user) object and a joined [Chat](#chat) object array in the key `latestChat` at the root. Inside of the User modle will be an array of profileimages in the `profileImages` key which will be empty or contain one and only one object that has been labeled as the user's profile image with the imageUrl provided. This User model will represent the "Other" user in the relationship, the one that differs from the `userId` passed in to the request. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Send chat message
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "chats.sendMessage",
+  "params": {
+    "fromUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "toUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "message": "Hello World!",
+    "relationshipId": "f9724d2a-6d95-48db-b916-17033010b29b"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "fromUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "toUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "message": "Hello World!",
+    "timeStamp": "2017-03-08T17:24:50.696Z",
+    "createdAt": "2017-03-08T17:24:50.719Z",
+    "read": false,
+    "id": "95989bbd-251b-45b1-bec6-3043fa0a43f5"
+  }
+}
+```
+
+```json-doc
+
+```
+
+The purpose of this method is to facilitate the publishing of a message from one user to another based on their relationship and relationship level. If all validation checks out, a chat message will be saved to the database and the message will be published to our real-time service (PubNub) to power the real-time chat communication within the application.
+
+### RPC Method Name
+`chats.sendMessage`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `chats.sendMessage` |
+| params | Object | Contains fields needed to perform the action |
+| params.fromUId | String | This is the unique user Id of the sender user. |
+| params.toUId | String | This is the unique user Id of the receiver of the message. |
+| params.message | String | The body/content of the message being sent. |
+| params.relationshipId | String | The unique Id of the realtionship object retrieved earlier. We ask for this so we can do some verification/validation to ensure these two users really can chat where searching by the ID is much more reliable. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The result is the object representation of the [Chat](#chat) message in the database |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Fetch Chat Message History
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "chats.fetchChatHistory",
+  "params": {
+    "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "relationshipId": "f9724d2a-6d95-48db-b916-17033010b29b"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "user": {
+      "createdAt": "2017-01-11T23:48:18.237Z",
+      "email": "zerosk8er194@gmail.com",
+      "fbId": "10208099895402377",
+      "gender": 0,
+      "id": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+      "profileImages": [],
+      "username": "shaggydev"
+    },
+    "messages": [
+      {
+        "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+        "createdAt": "2017-03-08T17:29:19.114Z",
+        "fromUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+        "id": "6e2b906c-303f-4aa0-ace5-6b1364b23ed9",
+        "message": "World, Hello!",
+        "read": false,
+        "timeStamp": "2017-03-08T17:29:19.093Z",
+        "toUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657"
+      }
+    ]
+}
+```
+
+```json-doc
+
+```
+
+The purpose of this method is to return a history of chat messages within a given relation/conversation that is ordered by most recent message on top (DESC order). 
+
+### RPC Method Name
+`chats.fetchChatHistory`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `chats.fetchChatHistory` |
+| params | Object | Contains fields needed to perform the action |
+| params.userId | String | This is the unique user Id of the user requesting chat history. |
+| params.relationshipId | String | The unique Id of the realtionship object retrieved earlier. |
+| params.lastTimeStamp | String | **Optional** This is a field that will power the infinite scrolling paginiation of chat history. This field should be populated with the value of the `timeStamp` property of the last (oldest) chat message recieved. Using this field, the API will return the next set of 10 chat messages starting from the provided date. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The result is going to be a custom response with just two keys; `user` and `messages` |
+| result.user | Object | This object is going to be the [User](#user) model object of the "receiving" user, opposite of the user of the Id passed into the request. We have this on the top level of the response rather than within each chat message to reduce the repition of data within each chat message. |
+| result.messages | Array | This is going to be an Array of [Chat](#chat) model objects ordered by most recent first (Desc). |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Mark Chat Messages as Read
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "chats.markChatRead",
+  "params": {
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "relationshipId": "f9724d2a-6d95-48db-b916-17033010b29b"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": [
+    {
+      "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+      "createdAt": "2017-03-08T17:24:50.719Z",
+      "fromUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+      "id": "95989bbd-251b-45b1-bec6-3043fa0a43f5",
+      "message": "Hello World!",
+      "read": true,
+      "timeStamp": "2017-03-08T17:24:50.696Z",
+      "toUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657"
+    }
+  ]
+}
+```
+
+```json-doc
+
+```
+
+This method is used to mark all messages that a user has recieved on a specific relationship/conversation as `read`.
+
+### RPC Method Name
+`chats.markChatRead`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `chats.markChatRead` |
+| params | Object | Contains fields needed to perform the action |
+| params.toUId | String | This is the unique user Id of the user requesting to read their unread messages. |
+| params.relationshipId | String | The unique Id of the realtionship object that represents the conversation between the two users. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Array | The result of this method is an Array of [Chat](#chat) model objects of those that have been marked as `read` (with the field `read: true`). |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Fetch Unread Chat Message Count
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "chats.fetchUnreadChatCount",
+  "params": {
+    "toUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "count": 0
+  }
+}
+```
+
+```json-doc
+
+```
+
+This method's sole purpose is to return a number value that represents the unread message count for a recieving user in the provided channelName (Conversation).
+
+### RPC Method Name
+`chats.fetchUnreadChatCount`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `chats.fetchUnreadChatCount`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.toUId | String | This is the unique user Id of the user requesting to read their unread messages. |
+| params.channelName | String | This should be the full channel name that is provided through the relationship/conversation object in the `channelName` field. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | The result is a simple object with a single key `count` that will contain a number value representing the unread message count for a user in a given channelName (Conversation). |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
