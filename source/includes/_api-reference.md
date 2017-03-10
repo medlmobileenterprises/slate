@@ -827,6 +827,123 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
+## Login using Manual Credentials
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.login",
+  "params": {
+    "body": {
+      "username": "something@another.com",
+      "password": "test123"
+    }
+  }
+}
+```
+
+```json-doc
+```
+
+> The following is a successful login
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "createdAt": "2017-03-10T02:42:47.177Z",
+    "email": "something@another.com",
+    "extendedProfile": {
+      "createdAt": "2017-03-10T02:42:47.284Z",
+      "id": "125e85a8-dd84-4bb9-a563-93552115330c",
+      "profileImages": [],
+      "userId": "a4b4799d-55ef-41de-aa62-ef47a6d5b3da"
+    },
+    "id": "a4b4799d-55ef-41de-aa62-ef47a6d5b3da",
+    "inventory": {
+      "baseInvCount": 75,
+      "createdAt": "2017-03-10T02:42:47.284Z",
+      "id": "0a2d4942-ff4f-4b14-922f-545a3511e679",
+      "items": [],
+      "level": 1,
+      "userId": "a4b4799d-55ef-41de-aa62-ef47a6d5b3da"
+    },
+    "username": "testing001"
+  }
+}
+```
+
+```json-doc
+```
+
+> The following result is when the email address provided in the "username" field of the request doesn't match an email address in the database
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "error": {
+    "name": "SocialAuthError",
+    "message": "No User Found by that email",
+    "code": 1020
+  }
+}
+```
+
+```json-doc
+```
+
+> The following is when we have found a user account with the email provided in the "username" of the request but the password provided does not match
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "error": {
+    "name": "SocialAuthError",
+    "message": "Password was invalid for this user account",
+    "code": 1022
+  }
+}
+```
+
+```json-doc
+```
+
+This method accepts a single parameter in the `params` property of the request called `body`. Inside `body`, two parameters should be passed that represent the user's crednetials: `username` which should be the email the user registered with, and `password` is the password given for the user account. Upon successful authentication, the full user profile will be returned with the complete inventory object and all of its item details.
+
+### RPC Method Name
+`users.login`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.login`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.body.username | String | The email address that the user registed their account with. |
+| params.body.password | String | The password that will be be used to check our records for a successful match. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. Also includes the complete [ExtendedProfile](#extended-profile) for a found user with facebook login. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
 ## Pickup Dropped Item
 
 ```json
@@ -1893,7 +2010,32 @@ The purpose of this method is to easily provide user profile information along s
       "userIds": [
         "f33ceb35-9847-4d1d-a3d2-dd1649661657",
         "d3b0a471-eb99-42a6-9d87-76299abfd64a"
-      ]
+      ],
+      "user": {
+        "createdAt": "2017-01-11T23:48:18.237Z",
+        "email": "zerosk8er194@gmail.com",
+        "fbId": "10208099895402377",
+        "id": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+        "extendedProfile": {
+          "id": "b43de21f-b598-4fe1-8e78-4e626ef6afd0",
+          "age": 25,
+          "profileImages": [
+            {
+              "createdAt": "2017-02-23T01:15:40.857Z",
+              "extendedProfileId": "b43de21f-b598-4fe1-8e78-4e626ef6afd0",
+              "fileExt": ".jpeg",
+              "filename": "interesting",
+              "id": "db126b3c-0919-417c-aa97-6ead4a6c6a02",
+              "isProfile": true,
+              "order": 0,
+              "userId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+              "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/f33ceb35-9847-4d1d-a3d2-dd1649661657/db126b3c-0919-417c-aa97-6ead4a6c6a02.jpeg"
+            }
+          ],
+          "userId": "f33ceb35-9847-4d1d-a3d2-dd1649661657"
+        },
+        "username": "shaggydev"
+      }
     }
   ]
 }
@@ -1924,7 +2066,7 @@ The purpose of this method is to retrieve a list of new connections for a given 
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| result | Array | The result is an Array of [Relationship](#relationship) objects where the `lastInitiator` id is NOT the requesting userId (in other words, relationships where challenges are directed towards the userId specified in the request). |
+| result | Array | The result is an Array of [Relationship](#relationship) objects where the `lastInitiator` id is NOT the requesting userId (in other words, relationships where challenges are directed towards the userId specified in the request). Each realtionship object will have an added field `user` which will contain the "other" user's object with basic `extendedProfile` information. |
 
 
 [//]: # (==================================================================================================)
@@ -2016,10 +2158,9 @@ The purpose of this method is to provide a way for a user to "ignore" a user's f
 {
   "jsonrpc": "2.0",
   "id": "1234",
-  "method": "users.selectUserOnMap",
+  "method": "relationships.fetchUserChatView",
   "params": {
-    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
-    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+    "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
   }
 }
 ```
