@@ -453,6 +453,10 @@ This method is used to update a user's profile information. The only fields that
 }
 ```
 
+<aside class="warning">
+This method is now deprecated in favor for separate functions to register a user based on the type of authentication they choose.
+See <a href="#register-with-facebook">Register With Facebook</a> and <a href="#register-with-email">Register With Email methods</a>.
+</aside>
 This method is used to create a new user account.
 
 ### RPC Method Name
@@ -474,6 +478,167 @@ This method is used to create a new user account.
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Register With Facebook
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "users.registerUserWithFB",
+  "id": "1234",
+  "params": {
+    "userData": {
+      "fbId": "98723874623",
+      "username": "testingUser",
+      "extendedProfile": {
+        "birthdate": "1988-01-14T00:00:00.000Z",
+        "gender": 0,
+        "city": "Huntington Beach",
+        "inches": 70
+      }
+    }
+  }
+}
+```
+
+```json-doc
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "",
+  "result": {
+    "createdAt": "2016-11-11T19:52:08.000Z",
+    "fbId": "98723874623",
+    "id": "6abd8d81-c24d-41a6-bee7-db49efd2c70d",
+    "username": "testingUser"
+  }
+}
+```
+
+```json-doc
+```
+
+<aside class="notice">
+Replacement for <a href="#register-create-new-user">Register/Create User new User</a>.
+</aside>
+This method is to be specifically used to signup a user where the preferred method of login would be through facebook login.
+
+### RPC Method Name
+`users.registerUserWithFB`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.registerUserWithFB` |
+| params | Object | Object that contains the field `userData` where the value is a JSON object that contains the userModel fields to save in the database |
+| params.userData.fbId | String | **Reuqired** This is the facebook Id of the user's facebook account after authenticating through facebook. Used to verify login |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The result of the request. [userModel](#user) |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Register With Email
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "users.registerUser",
+  "id": "1234",
+  "params": {
+    "userData": {
+      "email": "someemail@email.com",
+      "username": "testingUser",
+      "password": "somePassword",
+      "extendedProfile": {
+        "birthdate": "1988-01-14T00:00:00.000Z",
+        "gender": 0,
+        "city": "Huntington Beach",
+        "inches": 70
+      }
+    }
+  }
+}
+```
+
+```json-doc
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "",
+  "result": {
+    "createdAt": "2016-11-11T19:52:08.000Z",
+    "email": "testing@test.com",
+    "fbId": "98723874623",
+    "id": "6abd8d81-c24d-41a6-bee7-db49efd2c70d",
+    "username": "testingUser",
+    "gender": 0,
+    "age": 28,
+    "city": "Huntington Beach"
+  }
+}
+```
+
+```json-doc
+```
+
+<aside class="notice">
+Replacement for <a href="#register-create-new-user">Register/Create User new User</a>.
+</aside>
+This method is specifically used for creating a new user account using the preference for a Manual login flow (passing email and password to login).
+
+### RPC Method Name
+`users.registerUserWithEmail`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.registerUserWithEmail` |
+| params | Object | Object that contains the field `userData` where the value is a JSON object that contains the userModel fields to save in the database |
+| params.userData.email | String | **Required** This is the email that the user will use to login with when registering via email |
+| params.userData.password | String | **Required** This is the password the user is choosing as their login credentials |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The result of the request. [userModel](#user) |
+
 
 
 [//]: # (==================================================================================================)
