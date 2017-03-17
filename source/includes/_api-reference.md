@@ -2712,3 +2712,93 @@ This method's sole purpose is to return a number value that represents the unrea
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
+
+## Send Forgot Password Request
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.forgotPassword",
+  "params": {
+    "email": "testing0003@test.com"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "statusCode": 202,
+    "body": "",
+    "headers": {
+      "server": "nginx",
+      "date": "Thu, 16 Mar 2017 20:11:39 GMT",
+      "content-type": "text/plain; charset=utf-8",
+      "content-length": "0",
+      "connection": "close",
+      "x-message-id": "pcbA2aqTRI-OUyjDqm1Sxg",
+      "x-frame-options": "DENY",
+      "access-control-allow-origin": "https://sendgrid.api-docs.io",
+      "access-control-allow-methods": "POST",
+      "access-control-allow-headers": "Authorization, Content-Type, On-behalf-of, x-sg-elas-acl",
+      "access-control-max-age": "600",
+      "x-no-cors-reason": "https://sendgrid.com/docs/Classroom/Basics/API/cors.html"
+    }
+  }
+}
+```
+
+> The following is the result if a user passes an email address that does not match an email record in our database
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "code": 1201,
+    "message": "Email does not match any records in our database"
+  }
+}
+```
+
+```json-doc
+```
+
+This method is used to create a user request to reset their password. This method will attempt to find a user based on the email provided and if one is found, will use SendGrid to send an automated email with a link to reset their password. **However** it should be noted that if the user enters an email here that does not match one in our records, an error will be returned back.
+
+### RPC Method Name
+`users.forgotPassword`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.forgotPassword`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.email | String | This is the email that is linked to the user that we want to reset the password for and send the email to for the reset password link. |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | This will be a response from sendgrid that the email was successful. This response can be ignored since it doesn't contain anything of direct use. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
