@@ -1,4 +1,4 @@
-# API Reference
+# API Reference RPC
 
 All endpoints will resolve with the following host (domain) name/address:
 
@@ -2802,3 +2802,83 @@ This method is used to create a user request to reset their password. This metho
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
+
+## Report A User
+
+[//]: # (This code block shows up in the HTTP(JSON-RPC 2.0) tab on the left side)
+```json
+"POST /rpc HTTP/1.1"
+```
+
+[//]: # (This code block shows up in the HTTP(JSON-RPC 2.0) tab on the left side)
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "",
+  "params": {
+    
+  }
+}
+```
+
+[//]: # (This code block shows up in the HTTP(REST) tab on the left side)
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+
+  }
+}
+```
+
+> This is a sample of what error output MIGHT look like
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "code": 000,
+    "message": ""
+  }
+}
+```
+
+```json-doc
+```
+
+CHANGE ME! This is a placeholder description
+
+### RPC Method Name
+`resource.methodname`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `resource.methodname`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.something | ??? | FILL ME OUT WITH RELEVENT INFORMATION |
+
+### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | ??? | FILL ME OUT WITH RELEVENT INFORMATION FOR THIS METHOD |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+

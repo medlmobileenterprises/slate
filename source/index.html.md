@@ -13,7 +13,8 @@ includes:
   - _authentication
   - _data-models
   - _json-rpc-specs
-  - _api-reference
+  - _api-reference-rest
+  - _api-reference-rpc
   - _errors
 
 search: true
