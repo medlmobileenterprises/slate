@@ -8,7 +8,10 @@ All endpoints will resolve with the following host (domain) name/address:
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
-## Get All Users
+## Users
+
+[//]: # (==================================================================================================)
+### Get All Users
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -97,10 +100,10 @@ All endpoints will resolve with the following host (domain) name/address:
 
 This endpoint retrieves all users.
 
-### RPC Method Name
+#### RPC Method Name
 `users.fetchUsers`
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -110,9 +113,7 @@ This endpoint retrieves all users.
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Get a Specific User
+### Get a Specific User
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -170,10 +171,10 @@ This endpoint retrieves all users.
 
 This endpoint uses the userId passed to retrieve the details of a user.
 
-### RPC Method Name
+#### RPC Method Name
 `users.fetchUser`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -182,7 +183,7 @@ This endpoint uses the userId passed to retrieve the details of a user.
 | method | String | The name of the method to call on the server API. In this case: `users.fetchUser` |
 | params | Object | A JSON object that contains the field `userId` with the string value of the unique user id. Example: ```{ "userId": "unique-user-id" }``` |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -192,9 +193,7 @@ This endpoint uses the userId passed to retrieve the details of a user.
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Fetch A User Profile
+### Fetch A User Profile
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -256,10 +255,10 @@ This endpoint uses the userId passed to retrieve the details of a user.
 
 This method takes in two argmuents `userId` and `calledId`, which are both userIds, and will return a [User](#user) object with the attached [ExtendedProfile](#extendedprofile) information included. The `callerId` will be used with the `userId` to determine the relationship between these two user's to see how much information should be returned of the user by `userId` to the caller by `callerId`. This method supports and expects that a user will be requesting for their own profile, so if `userId` and `callerId` are the same, the check against the relationship will be skipped and will return everything about the user being requested. 
 
-### RPC Method Name
+#### RPC Method Name
 `users.fetchUserProfile`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -268,7 +267,7 @@ This method takes in two argmuents `userId` and `calledId`, which are both userI
 | method | String | The name of the method to call on the server API. In this case: `users.fetchUserProfile` |
 | params | Object | A JSON object that contains the field `userId` with the string value of the unique user id and the field `callerId` with the string value of the userId of the user requesting the other user's information. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -278,9 +277,7 @@ This method takes in two argmuents `userId` and `calledId`, which are both userI
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Update User Profile
+### Update User Profile
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -354,10 +351,10 @@ This method takes in two argmuents `userId` and `calledId`, which are both userI
 
 This method is used to update a user's profile information. The only fields that will be updated are those that are specified in the request. The request takes in a single argument called `data` that could contain the several different fields to update. The `userId` field is the only **Required** field and if not included will throw an error in the body of the response. The method will return the full user profile including `profileImages` and should contain the changes added in the request.
 
-### RPC Method Name
+#### RPC Method Name
 `users.updateProfile`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -366,7 +363,7 @@ This method is used to update a user's profile information. The only fields that
 | method | String | The name of the method to call on the server API. In this case: `users.updateProfile` |
 | params | Object | A JSON object that contains the field `data` where `data` is an Object where the keys passed will be directly related to the fields in the [ExtendedProfile](#extendedprofile) object to update and the values of these keys will be the new value to update the profile with. `data.userId` is the only required field in this request. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -376,9 +373,7 @@ This method is used to update a user's profile information. The only fields that
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Register/Create new User
+### Register/Create new User
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -459,10 +454,10 @@ See <a href="#register-with-facebook">Register With Facebook</a> and <a href="#r
 </aside>
 This method is used to create a new user account.
 
-### RPC Method Name
+#### RPC Method Name
 `users.registerUser`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -471,7 +466,7 @@ This method is used to create a new user account.
 | method | String | The name of the method to call on the server API. In this case: `users.registerUser` |
 | params | Object | Object that contains the field `userData` where the value is a JSON object that contains the userModel fields to save in the database |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -481,9 +476,7 @@ This method is used to create a new user account.
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Register With Facebook
+### Register With Facebook
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -535,10 +528,10 @@ Replacement for <a href="#register-create-new-user">Register/Create User new Use
 </aside>
 This method is to be specifically used to signup a user where the preferred method of login would be through facebook login.
 
-### RPC Method Name
+#### RPC Method Name
 `users.registerUserWithFB`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -548,7 +541,7 @@ This method is to be specifically used to signup a user where the preferred meth
 | params | Object | Object that contains the field `userData` where the value is a JSON object that contains the userModel fields to save in the database |
 | params.userData.fbId | String | **Reuqired** This is the facebook Id of the user's facebook account after authenticating through facebook. Used to verify login |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -558,9 +551,7 @@ This method is to be specifically used to signup a user where the preferred meth
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Register With Email
+### Register With Email
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -617,10 +608,10 @@ Replacement for <a href="#register-create-new-user">Register/Create User new Use
 </aside>
 This method is specifically used for creating a new user account using the preference for a Manual login flow (passing email and password to login).
 
-### RPC Method Name
+#### RPC Method Name
 `users.registerUserWithEmail`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -631,7 +622,7 @@ This method is specifically used for creating a new user account using the prefe
 | params.userData.email | String | **Required** This is the email that the user will use to login with when registering via email |
 | params.userData.password | String | **Required** This is the password the user is choosing as their login credentials |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -640,11 +631,8 @@ This method is specifically used for creating a new user account using the prefe
 | result | Object | The result of the request. [userModel](#user) |
 
 
-
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Update User Location
+### Update User Location
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -720,10 +708,10 @@ This method is specifically used for creating a new user account using the prefe
 
 This method accepts two parameters `userId` and `location`. The API uses the `userId` to find the user and the `location` information to setup the geospatial information in the database to support geospatial queries later. 
 
-### RPC Method Name
+#### RPC Method Name
 `users.updatePosition`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -732,7 +720,7 @@ This method accepts two parameters `userId` and `location`. The API uses the `us
 | method | String | The name of the method to call on the server API. In this case: `users.updatePosition` |
 | params | Object | Object that contains the fields `userId` and `location` |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -742,9 +730,7 @@ This method accepts two parameters `userId` and `location`. The API uses the `us
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Search for targets around User
+### Search for targets around User
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -827,10 +813,10 @@ This method will serve two purposes; it will require a location object with the 
 
 <aside class="notice">This method will omit returning the calling user's object</aside>
 
-### RPC Method Name
+#### RPC Method Name
 `users.searchTargets`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -839,7 +825,7 @@ This method will serve two purposes; it will require a location object with the 
 | method | String | The name of the method to call on the server API. In this case: `users.searchTargets` |
 | params | Object | Object that contains the fields `userId` and `location` |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -849,9 +835,7 @@ This method will serve two purposes; it will require a location object with the 
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Login using Facebook
+### Login using Facebook
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -967,10 +951,10 @@ This method will serve two purposes; it will require a location object with the 
 
 This endpoint accepts a single argument `access_token` the was given by the Facebook SDK and will validate the access_token. If the API is able to find a profile using this access token, the API will attempt to find a user account that exists with the given `facebookId` from the profile. Providing one exists, the user object will be returned in the `result` field of the Response Body. If there was a problem, the description will be provided in the `error` field of the response body.
 
-### RPC Method Name
+#### RPC Method Name
 `users.loginFB`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -980,7 +964,7 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 | params | Object | Contains fields needed to perform the action |
 | params.body.access_token | String | Facebook access token from client login to find user account with |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -990,9 +974,7 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Login using Manual Credentials
+### Login using Manual Credentials
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -1083,10 +1065,10 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 
 This method accepts a single parameter in the `params` property of the request called `body`. Inside `body`, two parameters should be passed that represent the user's crednetials: `username` which should be the email the user registered with, and `password` is the password given for the user account. Upon successful authentication, the full user profile will be returned with the complete inventory object and all of its item details.
 
-### RPC Method Name
+#### RPC Method Name
 `users.login`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1097,7 +1079,7 @@ This method accepts a single parameter in the `params` property of the request c
 | params.body.username | String | The email address that the user registed their account with. |
 | params.body.password | String | The password that will be be used to check our records for a successful match. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1107,9 +1089,7 @@ This method accepts a single parameter in the `params` property of the request c
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Pickup Dropped Item
+### Pickup Dropped Item
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -1186,10 +1166,10 @@ This method accepts a single parameter in the `params` property of the request c
 
 This method is used for a user to pickup a dropped item on the map and add it to their inventory
 
-### RPC Method Name
+#### RPC Method Name
 `users.pickupItem`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1200,7 +1180,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | params.userId | String | Unique user id attempting to pickup an item |
 | params.itemId | String | Unique id of the item the user is attempting to pickup |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1210,9 +1190,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Discard Inventory Items
+### Discard Inventory Items
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -1288,10 +1266,10 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 ```
 
-### RPC Method Name
+#### RPC Method Name
 `users.trashItems`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1303,7 +1281,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | params.itemId | String | Unique item id of the item the user wants to get rid of |
 | params.quantity | Number | A number value representing how many of the specified item the user would like to part with. ___If not provided, currently the API will default to 1___ |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1313,9 +1291,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Get User's Inventory
+### Get User's Inventory
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -1391,10 +1367,10 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 This method is used for a user to pickup a dropped item on the map and add it to their inventory
 
-### RPC Method Name
+#### RPC Method Name
 `users.getUserInventory`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1404,7 +1380,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | Unique user id attempting to pickup an item |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1414,9 +1390,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Spawn Dropped Items for User
+### Spawn Dropped Items for User
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -1468,10 +1442,10 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 ```
 
-### RPC Method Name
+#### RPC Method Name
 `users.spawnItems`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1481,7 +1455,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | Unique user id attempting to pickup an item |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1491,9 +1465,281 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 
 [//]: # (==================================================================================================)
+### Replace Profile Image
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "users.updateProfileImage",
+  "id": "1234",
+  "params": {
+    "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+    "fileId": "c6bf71e9-79e1-4b21-841b-d21c5b878e97"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "createdAt": "2017-02-14T00:13:50.267Z",
+    "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
+    "fileExt": ".jpeg",
+    "filename": "interesting",
+    "id": "c6bf71e9-79e1-4b21-841b-d21c5b878e97",
+    "isProfile": true,
+    "order": 0,
+    "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2"
+  }
+}
+```
+
+```json-doc
+
+```
+
+This method is used to change the user's main profile picture to another picture that they have already uploaded and exists in their list of profileImages in their [ExtendedProfile](#extendedprofile). This method will throw an error if the API finds that the fileId passed is not owned by the user with the userId specified in the request.
+
+#### RPC Method Name
+`users.updateProfileImage`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.updateProfileImage` |
+| params | Object | Contains fields needed to perform the action |
+| params.userId | String | The unique user Id whom wants to update their main profile image to a new one |
+| params.fileId | String | The unique fileUploadId from the user's list of profileImages to promote to the main profile image. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | This method returns a [User](#user) model representing the full updated user profile which includes the full [ExtendedProfile](#extended-profile) with [FileUploads](#file-uploads) in the `profileImages` field of the `extendedProfile` |
+
+
+[//]: # (==================================================================================================)
+### Select User On Map
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.selectUserOnMap",
+  "params": {
+    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "createdAt": "2016-08-01T20:59:37.000Z",
+    "email": "integrationtesting@gmail.com",
+    "extendedProfile": {
+      "age": 20,
+      "bio": "This is a stupid ass bio",
+      "city": "Irvine",
+      "createdAt": "2017-02-14T08:51:37.278Z",
+      "id": "653fecdc-b858-45cb-9e57-a02eaafdf4a9",
+      "inches": 70,
+      "profileImages": [
+        {
+          "createdAt": "2017-02-14T08:51:37.437Z",
+          "extendedProfileId": "653fecdc-b858-45cb-9e57-a02eaafdf4a9",
+          "fileExt": ".jpeg",
+          "filename": "interesting",
+          "id": "17da7c59-0aa6-43e2-a2d4-67a6dad11d73",
+          "isProfile": false,
+          "order": 0,
+          "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+          "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/d3b0a471-eb99-42a6-9d87-76299abfd64a/17da7c59-0aa6-43e2-a2d4-67a6dad11d73.jpeg"
+        }
+      ],
+      "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+    },
+    "fbId": "9000",
+    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
+    "location": {
+      "latitude": 33.650928,
+      "longitude": -117.714303
+    },
+    "username": "JumpNShootMan",
+    "relationship": {
+      "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
+      "createdAt": "2017-01-25T03:57:14.925Z",
+      "id": "f9724d2a-6d95-48db-b916-17033010b29b",
+      "lastInitiator": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+      "level": 3,
+      "points": 7,
+      "updatedAt": "2017-02-16T19:11:23.756Z",
+      "userIds": [
+        "f33ceb35-9847-4d1d-a3d2-dd1649661657",
+        "d3b0a471-eb99-42a6-9d87-76299abfd64a"
+      ]
+    }
+  }
+}
+```
+
+```json-doc
+
+```
+
+The purpose of this method is to easily provide user profile information along side information about the potential relationship between the requesting user and the target user.
+
+#### RPC Method Name
+`users.selectUserOnMap`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| method | String | The name of the method to call on the server API. In this case: `users.selectUserOnMap` |
+| params | Object | Contains fields needed to perform the action |
+| params.fromUId | String | The unique Id of the user who is requesting the information on a user from the map view. |
+| params.toUId | String | The unique Id of the user who was found on the map and should be the subject of the response. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| result | Object | The result of this function will be an object representing the [User](#user) which will contain the [ExtendedProfile](#extended-profile) information based on the level of the relationship. The user model will contain a custom key `realtionship` which will contain the relationship object between the two given users. |
+
+
+[//]: # (==================================================================================================)
+### Send Forgot Password Request
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.forgotPassword",
+  "params": {
+    "email": "testing0003@test.com"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "statusCode": 202,
+    "body": "",
+    "headers": {
+      "server": "nginx",
+      "date": "Thu, 16 Mar 2017 20:11:39 GMT",
+      "content-type": "text/plain; charset=utf-8",
+      "content-length": "0",
+      "connection": "close",
+      "x-message-id": "pcbA2aqTRI-OUyjDqm1Sxg",
+      "x-frame-options": "DENY",
+      "access-control-allow-origin": "https://sendgrid.api-docs.io",
+      "access-control-allow-methods": "POST",
+      "access-control-allow-headers": "Authorization, Content-Type, On-behalf-of, x-sg-elas-acl",
+      "access-control-max-age": "600",
+      "x-no-cors-reason": "https://sendgrid.com/docs/Classroom/Basics/API/cors.html"
+    }
+  }
+}
+```
+
+> The following is the result if a user passes an email address that does not match an email record in our database
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "code": 1201,
+    "message": "Email does not match any records in our database"
+  }
+}
+```
+
+```json-doc
+```
+
+This method is used to create a user request to reset their password. This method will attempt to find a user based on the email provided and if one is found, will use SendGrid to send an automated email with a link to reset their password. **However** it should be noted that if the user enters an email here that does not match one in our records, an error will be returned back.
+
+#### RPC Method Name
+`users.forgotPassword`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.forgotPassword`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.email | String | This is the email that is linked to the user that we want to reset the password for and send the email to for the reset password link. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | This will be a response from sendgrid that the email was successful. This response can be ignored since it doesn't contain anything of direct use. |
+
+
 [//]: # (==================================================================================================)
 
-## Engage A User
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+## Engagements
+
+[//]: # (==================================================================================================)
+### Engage A User
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -1537,10 +1783,10 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 ```
 
-### RPC Method Name
+#### RPC Method Name
 `engagements.engageUser`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1551,7 +1797,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | params.fromUId | String | The unique userId who is initiating the Engagement (Battle) |
 | params.toUId | String | The unique userId who the current user is choosing to Engage |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1561,9 +1807,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Update Engagement With User
+### Update Engagement With User
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -1713,10 +1957,10 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 ```
 
-### RPC Method Name
+#### RPC Method Name
 `engagements.updateEngagement`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1729,7 +1973,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | params.userId | String | The unique userId of the current user who is fighting |
 | params.itemId | String | The unique itemId of the [Item](#item) object to record what items are being used in the engagement and to make sure to remove an instance of this item from the user's inventory. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1739,9 +1983,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Finish Engagement
+### Finish Engagement
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -1841,10 +2083,10 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 ```
 
-### RPC Method Name
+#### RPC Method Name
 `engagements.finishEngagement`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1855,7 +2097,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | params.engagementId | String | The unique Engagment Id |
 | params.win | Boolean | True if the engagement was a success; false if it was otherwise not a success |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -1867,276 +2109,15 @@ This method is used for a user to pickup a dropped item on the map and add it to
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Replace Profile Image
-
-```json
-"POST /rpc HTTP/1.1"
-```
-
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "users.updateProfileImage",
-  "id": "1234",
-  "params": {
-    "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
-    "fileId": "c6bf71e9-79e1-4b21-841b-d21c5b878e97"
-  }
-}
-```
-
-```json-doc
-
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": "1234",
-  "result": {
-    "createdAt": "2017-02-14T00:13:50.267Z",
-    "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
-    "fileExt": ".jpeg",
-    "filename": "interesting",
-    "id": "c6bf71e9-79e1-4b21-841b-d21c5b878e97",
-    "isProfile": true,
-    "order": 0,
-    "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2"
-  }
-}
-```
-
-```json-doc
-
-```
-
-This method is used to change the user's main profile picture to another picture that they have already uploaded and exists in their list of profileImages in their [ExtendedProfile](#extendedprofile). This method will throw an error if the API finds that the fileId passed is not owned by the user with the userId specified in the request.
-
-### RPC Method Name
-`users.updateProfileImage`
-
-### Request Attributes
-
-| Parameter | Type | Description |
-| ---- | ---- | ---- |
-| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
-| method | String | The name of the method to call on the server API. In this case: `users.updateProfileImage` |
-| params | Object | Contains fields needed to perform the action |
-| params.userId | String | The unique user Id whom wants to update their main profile image to a new one |
-| params.fileId | String | The unique fileUploadId from the user's list of profileImages to promote to the main profile image. |
-
-### Response Attributes
-
-| Parameter | Type | Description |
-| ---- | ---- | ---- |
-| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
-| result | Object | This method returns a [User](#user) model representing the full updated user profile which includes the full [ExtendedProfile](#extended-profile) with [FileUploads](#file-uploads) in the `profileImages` field of the `extendedProfile` |
-
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
-## Upload Profile Image
 
-```json
-"RPC method not supported for this type of function"
-```
-
-```json
-```
-
-```json-doc
-"POST /api/users/:unique-user-id/upload-avatar HTTP/1.1 Content-Type: multipart/form-data"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-```
-
-```json-doc
-{
-  "success": true,
-  "result": {
-    "createdAt": "2017-02-13T23:52:40.757Z",
-    "email": "testing001@test.com",
-    "extendedProfile": {
-      "createdAt": "2017-02-13T23:52:40.799Z",
-      "id": "c1d01481-920b-444b-a733-21ee6fa2af69",
-      "profileImages": [
-        {
-          "createdAt": "2017-02-14T00:13:50.267Z",
-          "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
-          "fileExt": ".jpeg",
-          "filename": "interesting",
-          "id": "c6bf71e9-79e1-4b21-841b-d21c5b878e97",
-          "isProfile": true,
-          "order": 0,
-          "updatedAt": "2017-02-14T18:45:44.530Z",
-          "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
-          "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/fe883474-f89c-4d60-9017-4f5a7d3bbef2/c6bf71e9-79e1-4b21-841b-d21c5b878e97.jpeg"
-        },
-        {
-          "createdAt": "2017-02-14T01:31:34.267Z",
-          "extendedProfileId": "c1d01481-920b-444b-a733-21ee6fa2af69",
-          "fileExt": ".png",
-          "filename": "hylian_shield",
-          "id": "0f4a40ae-14d6-4c24-b3c1-dccb535249be",
-          "isProfile": false,
-          "order": 0,
-          "updatedAt": "2017-02-14T18:46:36.564Z",
-          "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
-          "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/fe883474-f89c-4d60-9017-4f5a7d3bbef2/0f4a40ae-14d6-4c24-b3c1-dccb535249be.png"
-        }
-      ],
-      "userId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2"
-    },
-    "fbId": "908789324",
-    "id": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
-    "username": "testing001"
-  }
-}
-```
-
-This method is used to upload a profile image for a user. This method can only be made through a RESTful POST call using the `Content-Type: multipart/form-data` header. The only field that needs to be sent as form data is the `avatar` field with the value of the file to be uploading in multipart fashion. If successful, the response will contain the full user profile with the newly added [FileUpload](#fileupload) object representing the new upload among any others that have already been uploaded, all containing their respective `imageUrl` fields already generated.
-
-### RESTful path
-`/api/users/:userId/upload-avatar`
-
-### Form Data Fields
-
-| Parameter | Type | Description |
-| ---- | ---- | ---- |
-| fileUploadId | String | **Optional** The unique fileUploadId from the user's list of profileImages to update with the new image. Only use this if we are going to support replacing a file instead of Deleting the file first then creating a new one. |
-| avatar | File | **REQUIRED** The unique fileUploadId from the user's list of profileImages to promote to the main profile image. |
-
-### Response Attributes
-
-| Parameter | Type | Description |
-| ---- | ---- | ---- |
-| success | Boolean | If successful, this value will be true |
-| result | [User](#user) | Upon success, the result will contain the full [User](#user) object with the [ExtendedProfile](#extendedprofile) in the `extendedProfile` field and inside this object will be a list of `profileImages` with [FileUpload](#fileupload) as their object representation |
-
+## Relationships
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Select User On Map
-
-```json
-"POST /rpc HTTP/1.1"
-```
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": "1234",
-  "method": "users.selectUserOnMap",
-  "params": {
-    "fromUId": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
-    "toUId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
-  }
-}
-```
-
-```json-doc
-
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": "1234",
-  "result": {
-    "createdAt": "2016-08-01T20:59:37.000Z",
-    "email": "integrationtesting@gmail.com",
-    "extendedProfile": {
-      "age": 20,
-      "bio": "This is a stupid ass bio",
-      "city": "Irvine",
-      "createdAt": "2017-02-14T08:51:37.278Z",
-      "id": "653fecdc-b858-45cb-9e57-a02eaafdf4a9",
-      "inches": 70,
-      "profileImages": [
-        {
-          "createdAt": "2017-02-14T08:51:37.437Z",
-          "extendedProfileId": "653fecdc-b858-45cb-9e57-a02eaafdf4a9",
-          "fileExt": ".jpeg",
-          "filename": "interesting",
-          "id": "17da7c59-0aa6-43e2-a2d4-67a6dad11d73",
-          "isProfile": false,
-          "order": 0,
-          "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
-          "imageUrl": "https://s3.amazonaws.com/gotchuu/dev/users/profileImages/d3b0a471-eb99-42a6-9d87-76299abfd64a/17da7c59-0aa6-43e2-a2d4-67a6dad11d73.jpeg"
-        }
-      ],
-      "userId": "d3b0a471-eb99-42a6-9d87-76299abfd64a"
-    },
-    "fbId": "9000",
-    "id": "d3b0a471-eb99-42a6-9d87-76299abfd64a",
-    "location": {
-      "latitude": 33.650928,
-      "longitude": -117.714303
-    },
-    "username": "JumpNShootMan",
-    "relationship": {
-      "channelName": "f33ceb35-9847-4d1d-a3d2-dd1649661657_d3b0a471-eb99-42a6-9d87-76299abfd64a",
-      "createdAt": "2017-01-25T03:57:14.925Z",
-      "id": "f9724d2a-6d95-48db-b916-17033010b29b",
-      "lastInitiator": "f33ceb35-9847-4d1d-a3d2-dd1649661657",
-      "level": 3,
-      "points": 7,
-      "updatedAt": "2017-02-16T19:11:23.756Z",
-      "userIds": [
-        "f33ceb35-9847-4d1d-a3d2-dd1649661657",
-        "d3b0a471-eb99-42a6-9d87-76299abfd64a"
-      ]
-    }
-  }
-}
-```
-
-```json-doc
-
-```
-
-The purpose of this method is to easily provide user profile information along side information about the potential relationship between the requesting user and the target user.
-
-### RPC Method Name
-`users.selectUserOnMap`
-
-### Request Attributes
-
-| Parameter | Type | Description |
-| ---- | ---- | ---- |
-| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
-| method | String | The name of the method to call on the server API. In this case: `users.selectUserOnMap` |
-| params | Object | Contains fields needed to perform the action |
-| params.fromUId | String | The unique Id of the user who is requesting the information on a user from the map view. |
-| params.toUId | String | The unique Id of the user who was found on the map and should be the subject of the response. |
-
-### Response Attributes
-
-| Parameter | Type | Description |
-| ---- | ---- | ---- |
-| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
-| result | Object | The result of this function will be an object representing the [User](#user) which will contain the [ExtendedProfile](#extended-profile) information based on the level of the relationship. The user model will contain a custom key `realtionship` which will contain the relationship object between the two given users. |
-
-
-[//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Fetch New Challenges For User
+### Fetch New Challenges For User
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -2212,10 +2193,10 @@ The purpose of this method is to easily provide user profile information along s
 
 The purpose of this method is to retrieve a list of new connections for a given user. A new connection is defined as a relationship between two users where the `lastInitiator` field of the relationship object is NOT null AND is NOT the requesting user's Id. In short, a new connetions is defined as a fight that the other use has initiated towards the userId specified in the request. See [Relationship](#relationship) for field reference.
 
-### RPC Method Name
+#### RPC Method Name
 `relationships.fetchNewConnections`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2225,7 +2206,7 @@ The purpose of this method is to retrieve a list of new connections for a given 
 | params | Object | Contains fields needed to perform the action. |
 | params.userId | String | The unique Id of the user with which to retrieve the list of new connections for. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2235,9 +2216,7 @@ The purpose of this method is to retrieve a list of new connections for a given 
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Ignore Challenge
+### Ignore Challenge
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -2287,10 +2266,10 @@ The purpose of this method is to retrieve a list of new connections for a given 
 
 The purpose of this method is to provide a way for a user to "ignore" a user's fight challenge and reset the state of the relationship back to a place where either user can now initiate the progression of the relationship.
 
-### RPC Method Name
+#### RPC Method Name
 `relationships.ignoreChallenge`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2301,7 +2280,7 @@ The purpose of this method is to provide a way for a user to "ignore" a user's f
 | params.relationshipId | String | The unique Id of the relationship that the two users belong to and that the new challenge is associated with. |
 | params.toUId | String | The unique Id of the user who has been challenged and is ellecting to "ignore" this challenge attempt. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2311,9 +2290,7 @@ The purpose of this method is to provide a way for a user to "ignore" a user's f
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Fetch All Conversations/Relationships
+### Fetch All Conversations/Relationships
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -2383,10 +2360,10 @@ The purpose of this method is to provide a way for a user to "ignore" a user's f
 
 The purpose of this method is to return a list of relationships that a user belongs to and provide all information to populate a Conversation View.
 
-### RPC Method Name
+#### RPC Method Name
 `relationships.fetchUserChatView`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2396,7 +2373,7 @@ The purpose of this method is to return a list of relationships that a user belo
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | The unique Id of the user who is requesting their list of conversations/relationships. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2406,9 +2383,22 @@ The purpose of this method is to return a list of relationships that a user belo
 
 
 [//]: # (==================================================================================================)
+
+[//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
-## Send chat message
+
+## ExtendedProfile
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+## Chats
+
+[//]: # (==================================================================================================)
+### Send chat message
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -2457,10 +2447,10 @@ The purpose of this method is to return a list of relationships that a user belo
 
 The purpose of this method is to facilitate the publishing of a message from one user to another based on their relationship and relationship level. If all validation checks out, a chat message will be saved to the database and the message will be published to our real-time service (PubNub) to power the real-time chat communication within the application.
 
-### RPC Method Name
+#### RPC Method Name
 `chats.sendMessage`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2473,7 +2463,7 @@ The purpose of this method is to facilitate the publishing of a message from one
 | params.message | String | The body/content of the message being sent. |
 | params.relationshipId | String | The unique Id of the realtionship object retrieved earlier. We ask for this so we can do some verification/validation to ensure these two users really can chat where searching by the ID is much more reliable. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2483,9 +2473,7 @@ The purpose of this method is to facilitate the publishing of a message from one
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Fetch Chat Message History
+### Fetch Chat Message History
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -2544,10 +2532,10 @@ The purpose of this method is to facilitate the publishing of a message from one
 
 The purpose of this method is to return a history of chat messages within a given relation/conversation that is ordered by most recent message on top (DESC order). 
 
-### RPC Method Name
+#### RPC Method Name
 `chats.fetchChatHistory`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2559,7 +2547,7 @@ The purpose of this method is to return a history of chat messages within a give
 | params.relationshipId | String | The unique Id of the realtionship object retrieved earlier. |
 | params.lastTimeStamp | String | **Optional** This is a field that will power the infinite scrolling paginiation of chat history. This field should be populated with the value of the `timeStamp` property of the last (oldest) chat message recieved. Using this field, the API will return the next set of 10 chat messages starting from the provided date. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2571,9 +2559,7 @@ The purpose of this method is to return a history of chat messages within a give
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Mark Chat Messages as Read
+### Mark Chat Messages as Read
 
 ```json
 "POST /rpc HTTP/1.1"
@@ -2622,10 +2608,10 @@ The purpose of this method is to return a history of chat messages within a give
 
 This method is used to mark all messages that a user has recieved on a specific relationship/conversation as `read`.
 
-### RPC Method Name
+#### RPC Method Name
 `chats.markChatRead`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2636,7 +2622,7 @@ This method is used to mark all messages that a user has recieved on a specific 
 | params.toUId | String | This is the unique user Id of the user requesting to read their unread messages. |
 | params.relationshipId | String | The unique Id of the realtionship object that represents the conversation between the two users. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2646,9 +2632,7 @@ This method is used to mark all messages that a user has recieved on a specific 
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Fetch Unread Chat Message Count
+### Fetch Unread Chat Message Count
 ```json
 "POST /rpc HTTP/1.1"
 ```
@@ -2687,10 +2671,10 @@ This method is used to mark all messages that a user has recieved on a specific 
 
 This method's sole purpose is to return a number value that represents the unread message count for a recieving user in the provided channelName (Conversation).
 
-### RPC Method Name
+#### RPC Method Name
 `chats.fetchUnreadChatCount`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2701,7 +2685,7 @@ This method's sole purpose is to return a number value that represents the unrea
 | params.toUId | String | This is the unique user Id of the user requesting to read their unread messages. |
 | params.channelName | String | This should be the full channel name that is provided through the relationship/conversation object in the `channelName` field. |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2711,99 +2695,15 @@ This method's sole purpose is to return a number value that represents the unrea
 
 
 [//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-## Send Forgot Password Request
-```json
-"POST /rpc HTTP/1.1"
-```
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": "1234",
-  "method": "users.forgotPassword",
-  "params": {
-    "email": "testing0003@test.com"
-  }
-}
-```
-
-```json-doc
-
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": "1234",
-  "result": {
-    "statusCode": 202,
-    "body": "",
-    "headers": {
-      "server": "nginx",
-      "date": "Thu, 16 Mar 2017 20:11:39 GMT",
-      "content-type": "text/plain; charset=utf-8",
-      "content-length": "0",
-      "connection": "close",
-      "x-message-id": "pcbA2aqTRI-OUyjDqm1Sxg",
-      "x-frame-options": "DENY",
-      "access-control-allow-origin": "https://sendgrid.api-docs.io",
-      "access-control-allow-methods": "POST",
-      "access-control-allow-headers": "Authorization, Content-Type, On-behalf-of, x-sg-elas-acl",
-      "access-control-max-age": "600",
-      "x-no-cors-reason": "https://sendgrid.com/docs/Classroom/Basics/API/cors.html"
-    }
-  }
-}
-```
-
-> The following is the result if a user passes an email address that does not match an email record in our database
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": "1234",
-  "result": {
-    "code": 1201,
-    "message": "Email does not match any records in our database"
-  }
-}
-```
-
-```json-doc
-```
-
-This method is used to create a user request to reset their password. This method will attempt to find a user based on the email provided and if one is found, will use SendGrid to send an automated email with a link to reset their password. **However** it should be noted that if the user enters an email here that does not match one in our records, an error will be returned back.
-
-### RPC Method Name
-`users.forgotPassword`
-
-### Request Attributes
-
-| Parameter | Type | Description |
-| ---- | ---- | ---- |
-| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| method | String | The name of the method to call on the server API. In this case: `users.forgotPassword`. |
-| params | Object | Contains fields needed to perform the action. |
-| params.email | String | This is the email that is linked to the user that we want to reset the password for and send the email to for the reset password link. |
-
-### Response Attributes
-
-| Parameter | Type | Description |
-| ---- | ---- | ---- |
-| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| result | Object | This will be a response from sendgrid that the email was successful. This response can be ignored since it doesn't contain anything of direct use. |
-
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
-## Report A User
+
+## Reports
+
+[//]: # (==================================================================================================)
+### Report A User
 
 [//]: # (This code block shows up in the HTTP(JSON-RPC 2.0) tab on the left side)
 ```json
@@ -2857,10 +2757,10 @@ This method is used to create a user request to reset their password. This metho
 
 CHANGE ME! This is a placeholder description
 
-### RPC Method Name
+#### RPC Method Name
 `resource.methodname`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
@@ -2870,13 +2770,22 @@ CHANGE ME! This is a placeholder description
 | params | Object | Contains fields needed to perform the action. |
 | params.something | ??? | FILL ME OUT WITH RELEVENT INFORMATION |
 
-### Response Attributes
+#### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | ??? | FILL ME OUT WITH RELEVENT INFORMATION FOR THIS METHOD |
+
+
+[//]: # (==================================================================================================)
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+## Blocks
 
 
 [//]: # (==================================================================================================)
