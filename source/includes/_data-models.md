@@ -691,3 +691,80 @@ Expected to be created for a user as soon they are registered with our app.
 | updatedAt | Date |  |
 | channelKey | String | Represents the name of the pubnub channel user should subscribe to receive notifications. |
 | userId | String | User associated with this channelkey. |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Block
+
+This is the object representation of Blocks stored in the database between two Users.
+Expected to be created for a user as soon they are registered with our app.
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "createdAt": "2017-03-21T17:47:59.551Z",
+    "id": "c4d88db5-09f9-4970-977a-a417e0d9e369"
+  }
+```
+
+```json-doc
+{
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "createdAt": "2017-03-21T17:47:59.551Z",
+    "id": "c4d88db5-09f9-4970-977a-a417e0d9e369"
+  }
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| id | String | Uniquely generated Id for the object. |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| fromUId | String | User who iniciated the block. |
+| toUId | String | User getting blocked. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Reported
+
+This is the object representation of Blocks stored in the database between two Users.
+Expected to be created for a user as soon they are registered with our app.
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "status": 1,
+    "reason": 1,
+    "createdAt": "2017-03-21T18:39:26.495Z",
+    "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514"
+  }
+```
+
+```json-doc
+{
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "status": 1,
+    "reason": 1,
+    "createdAt": "2017-03-21T18:39:26.495Z",
+    "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514"
+  }
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| id | String | Uniquely generated Id for the object. |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| fromUId | String | User who iniciated the block. |
+| toUId | String | User getting blocked. |
