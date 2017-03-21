@@ -734,8 +734,7 @@ Expected to be created for a user as soon they are registered with our app.
 
 ## Reported
 
-This is the object representation of Blocks stored in the database between two Users.
-Expected to be created for a user as soon they are registered with our app.
+This is the represntation of the `Report` object in the database. 
 
 > The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
 
@@ -766,5 +765,17 @@ Expected to be created for a user as soon they are registered with our app.
 | id | String | Uniquely generated Id for the object. |
 | createdAt | Date |  |
 | updatedAt | Date |  |
-| fromUId | String | User who iniciated the block. |
-| toUId | String | User getting blocked. |
+| fromUId | String | User who is reporting another user. |
+| toUId | String | User who is the target for the Report. |
+| status | Number | An enumeration value representing the status of this Report. Should be used as a way to determine if the report has been reviewed or not and possibly to determine the action taken from this report. |
+| reason | Number | **Optional** An enumeration value to represent the reason for this report. |
+| fromUser | Object<[User](#user)> | This could be included in the model when returned by the API. This would be the object representation of the user who created the report against another user. |
+| toUser | Object<[User](#user)> | This could be included in the model when returned by the API. This would be the object representation of the user who is the subject of the report. |
+
+### Report Status codes
+
+| Code | Description |
+| ---- | ---- |
+| 1 | PENDING |
+| 1000 | OKAY |
+
