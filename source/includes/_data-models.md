@@ -655,3 +655,39 @@ This is the object representation of Chat messages stored in the database
 | message | String | The contents of the message |
 | read | Boolean | This is the status of the message for the `toUser`. This fields helps to determine if a user has any unread messages and if their conversation should be badged or not. |
 | timeStamp | Date | This is the moment in time that the message was sent. This will help to order and paginate any response to get a list of past messages |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Notification
+
+This is the object representation of Notifications stored in the database for each User.
+Expected to be created for a user as soon they are registered with our app.
+
+> The following samples represent examples of all the possible fields that could be returned. Excluded fields will be those that will never be returned in a response and left only to the server/database. Also note that not all fields will always be included in a response.
+
+```json
+{
+    "channelKey": "e59b23b9-abcd-4241-a405-097cc2ba50e9_somekey",
+    "userId": "e59b23b9-abcd-4241-a405-097cc2ba50e9",
+    "createdAt": "2017-03-21T01:08:59.976Z",
+    "id": "84e4257c-b84e-46dd-a43c-356774069ca0"
+}
+```
+
+```json-doc
+{
+    "channelKey": "e59b23b9-abcd-4241-a405-097cc2ba50e9_somekey",
+    "userId": "e59b23b9-abcd-4241-a405-097cc2ba50e9",
+    "createdAt": "2017-03-21T01:08:59.976Z",
+    "id": "84e4257c-b84e-46dd-a43c-356774069ca0"
+}
+```
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| id | String | Uniquely generated Id for the object. |
+| createdAt | Date |  |
+| updatedAt | Date |  |
+| channelKey | String | Represents the name of the pubnub channel user should subscribe to receive notifications. |
+| userId | String | User associated with this channelkey. |
