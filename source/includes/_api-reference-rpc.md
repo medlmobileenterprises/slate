@@ -1743,7 +1743,7 @@ This method is used to create a user request to reset their password. This metho
   "id": "1234",
   "method": "users.clearUserBadge",
   "params": {
-    "userId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b"
+    "userId": "3d7d185b-2a53-4bb2-996e-ba38ab6f80a4"
   }
 }
 ```
@@ -1760,11 +1760,13 @@ This method is used to create a user request to reset their password. This metho
   "id": "1234",
   "result": {
     "badge": 0,
-    "createdAt": "2017-03-21T01:27:43.904Z",
-    "fbId": "00019283674",
-    "ftueComplete": false,
-    "id": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b",
-    "username": "testing001"
+    "banned": false,
+    "city": "irvine",
+    "createdAt": "2017-01-04T02:00:53.906Z",
+    "email": "ankitv@uci.edu",
+    "id": "3d7d185b-2a53-4bb2-996e-ba38ab6f80a4",
+    "username": "ankit",
+    "ftueComplete": false
   }
 }
 ```
