@@ -89,5 +89,479 @@ This method is used to upload a profile image for a user. This method can only b
 
 
 [//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
 
 
+## Reports
+
+[//]: # (==================================================================================================)
+### Get Reported User
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"GET /api/report/:fromUId/:toUId/getReport"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": [
+    {
+      "createdAt": "2017-03-21T18:39:26.495Z",
+      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+      "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+      "reason": 1,
+      "status": 1,
+      "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    }
+  ]
+}
+```
+
+This method gets a specific desired report from the db.
+
+#### RESTful path
+`/api/report/:fromUId/:toUId/getReport`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| fromUId | String | user id initiated reporting |
+| toUId | String | user being reported |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Array | Report Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+### Get All Reports
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"GET /api/report/getAll"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": [
+    {
+      "createdAt": "2017-03-21T18:39:26.495Z",
+      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+      "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+      "reason": 1,
+      "status": 1,
+      "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    },
+    {
+          "createdAt": "2017-03-21T18:39:26.495Z",
+          "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+          "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+          "reason": 1,
+          "status": 1,
+          "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+     }
+  ]
+}
+```
+
+This method gets all the reports in db.
+
+#### RESTful path
+`/api/report/getAll`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Array | Report Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+### Get All Reports by user reported.
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"GET /api/report/:toUId/userReportedBy"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": [
+    {
+      "createdAt": "2017-03-21T18:39:26.495Z",
+      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+      "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+      "reason": 1,
+      "status": 1,
+      "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    },
+    {
+          "createdAt": "2017-03-21T18:39:26.495Z",
+          "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+          "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+          "reason": 1,
+          "status": 1,
+          "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+     }
+  ]
+}
+```
+
+This method gets all the reports in db for reported user that being toUId 
+
+#### RESTful path
+`/api/report/:toUId/userReportedBy`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| toUId | String | user being reported |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Array | Report Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+### Get All Reports by user reporting another user.
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"GET /api/report/:fromUId/userReportedList"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": [
+    {
+      "createdAt": "2017-03-21T18:39:26.495Z",
+      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+      "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+      "reason": 1,
+      "status": 1,
+      "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    },
+    {
+          "createdAt": "2017-03-21T18:39:26.495Z",
+          "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+          "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+          "reason": 1,
+          "status": 1,
+          "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+     }
+  ]
+}
+```
+
+This method gets all the reports in db for user who reported other users.
+
+#### RESTful path
+`/api/report/:fromUId/userReportedList`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| fromUId | String | user reporting |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Array | Report Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+### Get Report by Id.
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"GET /api/report/:reportId/fetchUserReported"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": 
+    {
+      "createdAt": "2017-03-21T18:39:26.495Z",
+      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+      "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+      "reason": 1,
+      "status": 1,
+      "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    }
+}
+```
+
+This method gets all the reports in db for user who reported other users.
+
+#### RESTful path
+`/api/report/:reportId/fetchUserReported`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| reportId | String | report id |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Object | Report Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+### Update report status
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"PUT /api/report/:reportId/updateStatus/:status"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": 
+    {
+      "createdAt": "2017-03-21T18:39:26.495Z",
+      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+      "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+      "reason": 1,
+      "status": 2,
+      "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    }
+}
+```
+
+This method updates the status of a given report.
+
+#### RESTful path
+`/api/report/:reportId/updateStatus/:status`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| reportId | String | report id |
+| status | Integer | current status of this report |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Object | Updated Report Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+
+## Banning
+
+[//]: # (==================================================================================================)
+
+### Ban a User
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"GET /api/ban/:userId/banUser"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": {
+    "banned": true,
+    "city": "irvine",
+    "createdAt": "2017-01-03T23:10:03.004Z",
+    "email": "ankit@uci.edu",
+    "id": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "username": "ankit",
+    "ftueComplete": false,
+    "badge": 0
+  }
+}
+```
+
+This method gets a specific desired report from the db.
+
+#### RESTful path
+`/api/ban/:userId/banUser`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| userId | String | user id to be banned |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Object | User Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+### Un Ban a User
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"GET /api/ban/:userId/unbanUser"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": {
+    "banned": false,
+    "city": "irvine",
+    "createdAt": "2017-01-03T23:10:03.004Z",
+    "email": "ankit@uci.edu",
+    "id": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "username": "ankit",
+    "ftueComplete": false,
+    "badge": 0
+  }
+}
+```
+
+This method gets a specific desired report from the db.
+
+#### RESTful path
+`/api/ban/:userId/unbanUser`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| userId | String | user id  getting un banned |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Object | User Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)

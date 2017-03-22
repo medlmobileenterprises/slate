@@ -2700,29 +2700,31 @@ This method's sole purpose is to return a number value that represents the unrea
 [//]: # (==================================================================================================)
 
 
-## Reports
+## Blocks
+
 
 [//]: # (==================================================================================================)
-### Report A User
+[//]: # (==================================================================================================)
 
-[//]: # (This code block shows up in the HTTP(JSON-RPC 2.0) tab on the left side)
+
+
+## Blocking a User
 ```json
 "POST /rpc HTTP/1.1"
 ```
 
-[//]: # (This code block shows up in the HTTP(JSON-RPC 2.0) tab on the left side)
 ```json
 {
   "jsonrpc": "2.0",
   "id": "1234",
-  "method": "",
+  "method": "blocks.blockUser",
   "params": {
-    
+  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
   }
 }
 ```
 
-[//]: # (This code block shows up in the HTTP(REST) tab on the left side)
 ```json-doc
 
 ```
@@ -2734,41 +2736,29 @@ This method's sole purpose is to return a number value that represents the unrea
   "jsonrpc": "2.0",
   "id": "1234",
   "result": {
-
+   "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "createdAt": "2017-03-21T18:39:26.495Z",
+    "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514"
   }
 }
 ```
 
-> This is a sample of what error output MIGHT look like
 
-```json
-{
-  "jsonrpc": "2.0",
-  "id": "1234",
-  "result": {
-    "code": 000,
-    "message": ""
-  }
-}
-```
-
-```json-doc
-```
-
-CHANGE ME! This is a placeholder description
-
+This method is called upon to block couple of users in the system. FromUId is the user that initiates and blocks the toUId user. Here on, the world map and any other activities these two users will not be associated together. 
 #### RPC Method Name
-`resource.methodname`
+`blocks.blockUser`
 
-#### Request Attributes
+### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| method | String | The name of the method to call on the server API. In this case: `resource.methodname`. |
+| method | String | The name of the method to call on the server API. In this case: `users.forgotPassword`. |
 | params | Object | Contains fields needed to perform the action. |
-| params.something | ??? | FILL ME OUT WITH RELEVENT INFORMATION |
+| params.fromUId | String | User initiating the block |
+| params.toUId | String | User getting blocked to fromUId network. |
 
 #### Response Attributes
 
@@ -2776,18 +2766,492 @@ CHANGE ME! This is a placeholder description
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| result | ??? | FILL ME OUT WITH RELEVENT INFORMATION FOR THIS METHOD |
-
-
-[//]: # (==================================================================================================)
-
-[//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-
-## Blocks
+| result | Object | The blocked object just inserted with users information |
 
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
+
+## Checking if users are blocked to each other.
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "blocks.areUsersBlocked",
+  "params": {
+  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": True/False
+}
+```
+
+
+This method is called to check if two users are blocked to each other. Returns a true or false boolean value.
+
+#### RPC Method Name
+`blocks.areUsersBlocked`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `blocks.areUsersBlocked`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.fromUId | String | User initiating the block |
+| params.toUId | String | User getting blocked to fromUId network. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object |Boolean value if the users blocked model exist in the DB. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+## Getting blocked model for users with user model.
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "blocks.getBlockedUsers",
+  "params": {
+  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result":     {
+                  "createdAt": "2017-03-21T17:47:59.551Z",
+                  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+                  "fromUser": {
+                    "createdAt": "2017-02-27T21:30:29.777Z",
+                    "email": "ankit@test.com",
+                    "fbId": "10211339070857649",
+                    "id": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+                    "username": "ankibunkers",
+                    "ftueComplete": false,
+                    "badge": 0
+                  },
+                  "id": "c4d88db5-09f9-4970-977a-a417e0d9e369",
+                  "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+                  "toUser": {
+                    "city": "irvine",
+                    "createdAt": "2017-01-03T23:10:03.004Z",
+                    "email": "ankit@uci.edu",
+                    "id": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+                    "username": "ankit",
+                    "ftueComplete": false,
+                    "badge": 0
+                  }
+                }
+}
+```
+
+
+This method is called to get blocked users joined with user info.
+
+#### RPC Method Name
+`blocks.getBlockedUsers`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `blocks.getBlockedUsers`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.fromUId | String | User initiating the block |
+| params.toUId | String | User getting blocked to fromUId network. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | Blocked object joined with both the user models. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+
+##  Get all the users blocked by a single user by passing in the fromUId.
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "blocks.blockedUsersForMe",
+  "params": {
+  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result":    [
+                   {
+                     "createdAt": "2017-03-21T17:47:59.551Z",
+                     "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+                     "id": "c4d88db5-09f9-4970-977a-a417e0d9e369",
+                     "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+                   },
+                   {
+                     "createdAt": "2017-03-21T17:47:03.462Z",
+                     "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+                     "id": "e3fd48e9-c266-448b-ba8a-56a74cae0b80",
+                     "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+                   }
+                 ]
+}
+```
+
+
+This method is called to get all the users blocked by a single user by passing in the fromUId.
+
+#### RPC Method Name
+`blocks.blockedUsersForMe`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `blocks.blockedUsersForMe`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.fromUId | String | User initiating the block |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | Array of blocked data models. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+
+##  Get all the users that has blocked a given user, passing in toUId.
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "blocks.iAmBlockedBy",
+  "params": {
+  "toUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result":    [
+                   {
+                     "createdAt": "2017-03-21T17:47:59.551Z",
+                     "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+                     "id": "c4d88db5-09f9-4970-977a-a417e0d9e369",
+                     "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+                   },
+                   {
+                     "createdAt": "2017-03-21T17:47:03.462Z",
+                     "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+                     "id": "e3fd48e9-c266-448b-ba8a-56a74cae0b80",
+                     "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+                   }
+                 ]
+}
+```
+
+
+This method is called to get all the users that has blocked a given user, passing in toUId.
+
+#### RPC Method Name
+`blocks.iAmBlockedBy`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `blocks.iAmBlockedBy`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.toUId | String | User has been blocked. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Array | Array of blocked data models. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+
+##  Functionality to remove a block between two users.
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "blocks.removeUsersBlock",
+  "params": {
+  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+  "toUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result":  "block removed!"
+}
+```
+
+
+This method is called to get all the users that has blocked a given user, passing in toUId.
+
+#### RPC Method Name
+`blocks.removeUsersBlock`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `blocks.removeUsersBlock`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.fromUId | String | User that initiated the block. |
+| params.toUId | String | User has been blocked. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | String | response that the object is removed from the db. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+## Report
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+
+## Report a user
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "reports.reportUser",
+  "params": {
+  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+   "reason": 1
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+   "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "createdAt": "2017-03-21T18:39:26.495Z",
+    "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+    "reason": 1,
+    "status": 1
+  }
+}
+```
+
+This method is called upon by a user to report another user in the app for a particular reason. Pass in the integer value for reason why this user is being reported.
+
+
+#### RPC Method Name
+`reports.reportUser`
+
+### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `reports.reportUser`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.fromUId | String | User reporting |
+| params.toUId | String | User being reported. |
+| params.reason | Integer | Specific value corresponding to a string reason. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | Contains the reported object just inserted in the db, contains an integer value of reason and a integer value indicating the status of this report. |
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+## Notification
+
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+
+## Notification Model and payload object information.
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+
+ 
+  {
+  "userId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+   "channelKey": "gotchuu_push:81cd8e07-3031-42de-9f30-b71b40d7eaab"
+  }
+
+```
+
+```json-doc
+
+```
+
+> The notification object looks something like this:
+
+```json
+    const channelKey = 'gotchuu_push:' + userId;
+    
+		let pushPayload = {
+			"pn_apns": {
+				"aps" : {
+					"alert": {
+						'title' : title,  //notification title
+						'body' :  body,  //notification custom build message
+						'action-loc-key': action  //action to be taken upon user checking this notification
+					},
+					"badge": badge,  //integer value to show number of notifications
+					"sound": pushObj.sound
+				}
+			},
+			data: data, //any custom object to be consumed by client; currently none.
+		};
+    
+    
+```
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
