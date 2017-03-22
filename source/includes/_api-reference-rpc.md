@@ -108,7 +108,7 @@ This endpoint retrieves all users.
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Array | The result of the request. [userModel](#user) |
 
 
@@ -179,7 +179,7 @@ This endpoint uses the userId passed to retrieve the details of a user.
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.fetchUser` |
 | params | Object | A JSON object that contains the field `userId` with the string value of the unique user id. Example: ```{ "userId": "unique-user-id" }``` |
 
@@ -188,7 +188,7 @@ This endpoint uses the userId passed to retrieve the details of a user.
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) |
 
 
@@ -263,7 +263,7 @@ This method takes in two argmuents `userId` and `calledId`, which are both userI
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.fetchUserProfile` |
 | params | Object | A JSON object that contains the field `userId` with the string value of the unique user id and the field `callerId` with the string value of the userId of the user requesting the other user's information. |
 
@@ -272,7 +272,7 @@ This method takes in two argmuents `userId` and `calledId`, which are both userI
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) with [ExtendedProfile](#extendedprofile) attached |
 
 
@@ -359,7 +359,7 @@ This method is used to update a user's profile information. The only fields that
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.updateProfile` |
 | params | Object | A JSON object that contains the field `data` where `data` is an Object where the keys passed will be directly related to the fields in the [ExtendedProfile](#extendedprofile) object to update and the values of these keys will be the new value to update the profile with. `data.userId` is the only required field in this request. |
 
@@ -368,7 +368,7 @@ This method is used to update a user's profile information. The only fields that
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) with [ExtendedProfile](#extendedprofile) attached |
 
 
@@ -462,7 +462,7 @@ This method is used to create a new user account.
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.registerUser` |
 | params | Object | Object that contains the field `userData` where the value is a JSON object that contains the userModel fields to save in the database |
 
@@ -471,7 +471,7 @@ This method is used to create a new user account.
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) |
 
 
@@ -536,7 +536,7 @@ This method is to be specifically used to signup a user where the preferred meth
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.registerUserWithFB` |
 | params | Object | Object that contains the field `userData` where the value is a JSON object that contains the userModel fields to save in the database |
 | params.userData.fbId | String | **Reuqired** This is the facebook Id of the user's facebook account after authenticating through facebook. Used to verify login |
@@ -546,7 +546,7 @@ This method is to be specifically used to signup a user where the preferred meth
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) |
 
 
@@ -616,7 +616,7 @@ This method is specifically used for creating a new user account using the prefe
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.registerUserWithEmail` |
 | params | Object | Object that contains the field `userData` where the value is a JSON object that contains the userModel fields to save in the database |
 | params.userData.email | String | **Required** This is the email that the user will use to login with when registering via email |
@@ -627,7 +627,7 @@ This method is specifically used for creating a new user account using the prefe
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) |
 
 
@@ -716,7 +716,7 @@ This method accepts two parameters `userId` and `location`. The API uses the `us
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.updatePosition` |
 | params | Object | Object that contains the fields `userId` and `location` |
 
@@ -725,7 +725,7 @@ This method accepts two parameters `userId` and `location`. The API uses the `us
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of the request. [userModel](#user) |
 
 
@@ -821,7 +821,7 @@ This method will serve two purposes; it will require a location object with the 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.searchTargets` |
 | params | Object | Object that contains the fields `userId` and `location` |
 
@@ -830,7 +830,7 @@ This method will serve two purposes; it will require a location object with the 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Array | The result of the request. Array of [userModels](#user). Within each of the user objects, a field `profileImages` will exist which will contain a single [FileUpload](#file-upload) object which should be the main profile image information. |
 
 
@@ -959,7 +959,7 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.loginFB` |
 | params | Object | Contains fields needed to perform the action |
 | params.body.access_token | String | Facebook access token from client login to find user account with |
@@ -969,7 +969,7 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. Also includes the complete [ExtendedProfile](#extended-profile) for a found user with facebook login. |
 
 
@@ -1073,7 +1073,7 @@ This method accepts a single parameter in the `params` property of the request c
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `users.login`. |
 | params | Object | Contains fields needed to perform the action. |
 | params.body.username | String | The email address that the user registed their account with. |
@@ -1084,7 +1084,7 @@ This method accepts a single parameter in the `params` property of the request c
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. Also includes the complete [ExtendedProfile](#extended-profile) for a found user with facebook login. |
 
 
@@ -1174,7 +1174,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.pickupItem` |
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | Unique user id attempting to pickup an item |
@@ -1185,7 +1185,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details |
 
 
@@ -1274,7 +1274,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.trashItems` |
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | Unique user id attempting to discard an item |
@@ -1286,7 +1286,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. This is the new representation of the user's inventory, minus the item/s that was just removed |
 
 
@@ -1375,7 +1375,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.getUserInventory` |
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | Unique user id attempting to pickup an item |
@@ -1385,7 +1385,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details |
 
 
@@ -1450,7 +1450,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.spawnItems` |
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | Unique user id attempting to pickup an item |
@@ -1460,7 +1460,7 @@ This method is used for a user to pickup a dropped item on the map and add it to
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Array | An list of [InventoryItems](#inventoryitem) with the joined [Item](#item) details in the `item` field |
 
 
@@ -1520,7 +1520,7 @@ This method is used to change the user's main profile picture to another picture
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.updateProfileImage` |
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | The unique user Id whom wants to update their main profile image to a new one |
@@ -1531,7 +1531,7 @@ This method is used to change the user's main profile picture to another picture
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | This method returns a [User](#user) model representing the full updated user profile which includes the full [ExtendedProfile](#extended-profile) with [FileUploads](#file-uploads) in the `profileImages` field of the `extendedProfile` |
 
 
@@ -1627,7 +1627,7 @@ The purpose of this method is to easily provide user profile information along s
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `users.selectUserOnMap` |
 | params | Object | Contains fields needed to perform the action |
 | params.fromUId | String | The unique Id of the user who is requesting the information on a user from the map view. |
@@ -1638,7 +1638,7 @@ The purpose of this method is to easily provide user profile information along s
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of this function will be an object representing the [User](#user) which will contain the [ExtendedProfile](#extended-profile) information based on the level of the relationship. The user model will contain a custom key `realtionship` which will contain the relationship object between the two given users. |
 
 
@@ -1716,7 +1716,7 @@ This method is used to create a user request to reset their password. This metho
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `users.forgotPassword`. |
 | params | Object | Contains fields needed to perform the action. |
 | params.email | String | This is the email that is linked to the user that we want to reset the password for and send the email to for the reset password link. |
@@ -1726,7 +1726,7 @@ This method is used to create a user request to reset their password. This metho
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | Object | This will be a response from sendgrid that the email was successful. This response can be ignored since it doesn't contain anything of direct use. |
 
 
@@ -1791,7 +1791,7 @@ This method is used to create a user request to reset their password. This metho
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `engagements.engageUser` |
 | params | Object | Contains fields needed to perform the action |
 | params.fromUId | String | The unique userId who is initiating the Engagement (Battle) |
@@ -1802,7 +1802,7 @@ This method is used to create a user request to reset their password. This metho
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | An [Engagement](#engagement) with the initialized fields |
 
 
@@ -1965,7 +1965,7 @@ This method is used to create a user request to reset their password. This metho
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `engagements.updateEngagement` |
 | params | Object | Contains fields needed to perform the action |
 | params.engagementId | String | The unique Engagment Id usually retrieved after calling [Engage User](#engage-a-user)|
@@ -1978,7 +1978,7 @@ This method is used to create a user request to reset their password. This metho
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | An [Engagement](#engagement) with the updated engagement information. The `fromUser` field will be included containing the user object with the updated inventory and intentory item details.  |
 
 
@@ -2091,7 +2091,7 @@ This method is used to create a user request to reset their password. This metho
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `engagements.finishEngagement` |
 | params | Object | Contains fields needed to perform the action |
 | params.engagementId | String | The unique Engagment Id |
@@ -2102,7 +2102,7 @@ This method is used to create a user request to reset their password. This metho
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The is a custom response that will contain two keys: one to represent the list of reward items as `items` that can be picked up using the [PickupItem](#pickup-dropped-item) endpoint, and the other being the [Relationship](#relationship) stored in the field `relationship` |
 | result.items | Array | An array of [Items](#item) that represent a user's "rewards" for engaging with another user. |
 | result.relationship | Object | A [Relationship](#relationship) with the updated relatonship information. |
@@ -2201,7 +2201,7 @@ The purpose of this method is to retrieve a list of new connections for a given 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `relationships.fetchNewConnections`. |
 | params | Object | Contains fields needed to perform the action. |
 | params.userId | String | The unique Id of the user with which to retrieve the list of new connections for. |
@@ -2211,7 +2211,7 @@ The purpose of this method is to retrieve a list of new connections for a given 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | Array | The result is an Array of [Relationship](#relationship) objects where the `lastInitiator` id is NOT the requesting userId (in other words, relationships where challenges are directed towards the userId specified in the request). Each realtionship object will have an added field `user` which will contain the "other" user's object with basic `extendedProfile` information. |
 
 
@@ -2274,7 +2274,7 @@ The purpose of this method is to provide a way for a user to "ignore" a user's f
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `relationships.ignoreChallenge`. |
 | params | Object | Contains fields needed to perform the action. |
 | params.relationshipId | String | The unique Id of the relationship that the two users belong to and that the new challenge is associated with. |
@@ -2285,7 +2285,7 @@ The purpose of this method is to provide a way for a user to "ignore" a user's f
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | Object | The result of this method is an updated [Relationship](#relationship) object to signify that the "ignore" was successful. |
 
 
@@ -2368,7 +2368,7 @@ The purpose of this method is to return a list of relationships that a user belo
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `relationships.fetchUserChatView` |
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | The unique Id of the user who is requesting their list of conversations/relationships. |
@@ -2378,7 +2378,7 @@ The purpose of this method is to return a list of relationships that a user belo
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result of this function will be an Array of objects with each object representing the [Relationship](#relationship) model with a joined [User](#user) object and a joined [Chat](#chat) object array in the key `latestChat` at the root. Inside of the User modle will be an array of profileimages in the `profileImages` key which will be empty or contain one and only one object that has been labeled as the user's profile image with the imageUrl provided. This User model will represent the "Other" user in the relationship, the one that differs from the `userId` passed in to the request. |
 
 
@@ -2455,7 +2455,7 @@ The purpose of this method is to facilitate the publishing of a message from one
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `chats.sendMessage` |
 | params | Object | Contains fields needed to perform the action |
 | params.fromUId | String | This is the unique user Id of the sender user. |
@@ -2468,7 +2468,7 @@ The purpose of this method is to facilitate the publishing of a message from one
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result is the object representation of the [Chat](#chat) message in the database |
 
 
@@ -2540,7 +2540,7 @@ The purpose of this method is to return a history of chat messages within a give
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `chats.fetchChatHistory` |
 | params | Object | Contains fields needed to perform the action |
 | params.userId | String | This is the unique user Id of the user requesting chat history. |
@@ -2552,7 +2552,7 @@ The purpose of this method is to return a history of chat messages within a give
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Object | The result is going to be a custom response with just two keys; `user` and `messages` |
 | result.user | Object | This object is going to be the [User](#user) model object of the "receiving" user, opposite of the user of the Id passed into the request. We have this on the top level of the response rather than within each chat message to reduce the repition of data within each chat message. |
 | result.messages | Array | This is going to be an Array of [Chat](#chat) model objects ordered by most recent first (Desc). |
@@ -2616,7 +2616,7 @@ This method is used to mark all messages that a user has recieved on a specific 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | method | String | The name of the method to call on the server API. In this case: `chats.markChatRead` |
 | params | Object | Contains fields needed to perform the action |
 | params.toUId | String | This is the unique user Id of the user requesting to read their unread messages. |
@@ -2627,7 +2627,7 @@ This method is used to mark all messages that a user has recieved on a specific 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
 | result | Array | The result of this method is an Array of [Chat](#chat) model objects of those that have been marked as `read` (with the field `read: true`). |
 
 
@@ -2679,7 +2679,7 @@ This method's sole purpose is to return a number value that represents the unrea
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `chats.fetchUnreadChatCount`. |
 | params | Object | Contains fields needed to perform the action. |
 | params.toUId | String | This is the unique user Id of the user requesting to read their unread messages. |
@@ -2690,7 +2690,7 @@ This method's sole purpose is to return a number value that represents the unrea
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | Object | The result is a simple object with a single key `count` that will contain a number value representing the unread message count for a user in a given channelName (Conversation). |
 
 
@@ -2708,7 +2708,7 @@ This method's sole purpose is to return a number value that represents the unrea
 
 
 
-## Blocking a User
+### Blocking a User
 ```json
 "POST /rpc HTTP/1.1"
 ```
@@ -2719,8 +2719,8 @@ This method's sole purpose is to return a number value that represents the unrea
   "id": "1234",
   "method": "blocks.blockUser",
   "params": {
-  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
   }
 }
 ```
@@ -2736,8 +2736,8 @@ This method's sole purpose is to return a number value that represents the unrea
   "jsonrpc": "2.0",
   "id": "1234",
   "result": {
-   "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
     "createdAt": "2017-03-21T18:39:26.495Z",
     "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514"
   }
@@ -2746,16 +2746,17 @@ This method's sole purpose is to return a number value that represents the unrea
 
 
 This method is called upon to block couple of users in the system. FromUId is the user that initiates and blocks the toUId user. Here on, the world map and any other activities these two users will not be associated together. 
+
 #### RPC Method Name
 `blocks.blockUser`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| method | String | The name of the method to call on the server API. In this case: `users.forgotPassword`. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `blocks.blockUser`. |
 | params | Object | Contains fields needed to perform the action. |
 | params.fromUId | String | User initiating the block |
 | params.toUId | String | User getting blocked to fromUId network. |
@@ -2765,7 +2766,7 @@ This method is called upon to block couple of users in the system. FromUId is th
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | Object | The blocked object just inserted with users information |
 
 
@@ -2773,7 +2774,7 @@ This method is called upon to block couple of users in the system. FromUId is th
 [//]: # (==================================================================================================)
 
 
-## Checking if users are blocked to each other.
+### Checking if users are blocked to each other.
 ```json
 "POST /rpc HTTP/1.1"
 ```
@@ -2784,8 +2785,8 @@ This method is called upon to block couple of users in the system. FromUId is th
   "id": "1234",
   "method": "blocks.areUsersBlocked",
   "params": {
-  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
   }
 }
 ```
@@ -2800,7 +2801,7 @@ This method is called upon to block couple of users in the system. FromUId is th
 {
   "jsonrpc": "2.0",
   "id": "1234",
-  "result": True/False
+  "result": true
 }
 ```
 
@@ -2815,7 +2816,7 @@ This method is called to check if two users are blocked to each other. Returns a
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `blocks.areUsersBlocked`. |
 | params | Object | Contains fields needed to perform the action. |
 | params.fromUId | String | User initiating the block |
@@ -2826,15 +2827,15 @@ This method is called to check if two users are blocked to each other. Returns a
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| result | Object |Boolean value if the users blocked model exist in the DB. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Boolean | Boolean value if the users blocked model exist in the DB. |
 
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
 
-## Getting blocked model for users with user model.
+### Get Block Between Users.
 ```json
 "POST /rpc HTTP/1.1"
 ```
@@ -2843,10 +2844,10 @@ This method is called to check if two users are blocked to each other. Returns a
 {
   "jsonrpc": "2.0",
   "id": "1234",
-  "method": "blocks.getBlockedUsers",
+  "method": "blocks.getBlockBetweenUsers",
   "params": {
-  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
   }
 }
 ```
@@ -2861,30 +2862,30 @@ This method is called to check if two users are blocked to each other. Returns a
 {
   "jsonrpc": "2.0",
   "id": "1234",
-  "result":     {
-                  "createdAt": "2017-03-21T17:47:59.551Z",
-                  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-                  "fromUser": {
-                    "createdAt": "2017-02-27T21:30:29.777Z",
-                    "email": "ankit@test.com",
-                    "fbId": "10211339070857649",
-                    "id": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-                    "username": "ankibunkers",
-                    "ftueComplete": false,
-                    "badge": 0
-                  },
-                  "id": "c4d88db5-09f9-4970-977a-a417e0d9e369",
-                  "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
-                  "toUser": {
-                    "city": "irvine",
-                    "createdAt": "2017-01-03T23:10:03.004Z",
-                    "email": "ankit@uci.edu",
-                    "id": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
-                    "username": "ankit",
-                    "ftueComplete": false,
-                    "badge": 0
-                  }
-                }
+  "result": {
+    "createdAt": "2017-03-21T17:47:59.551Z",
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "fromUser": {
+      "createdAt": "2017-02-27T21:30:29.777Z",
+      "email": "ankit@test.com",
+      "fbId": "10211339070857649",
+      "id": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+      "username": "ankibunkers",
+      "ftueComplete": false,
+      "badge": 0
+    },
+    "id": "c4d88db5-09f9-4970-977a-a417e0d9e369",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "toUser": {
+      "city": "irvine",
+      "createdAt": "2017-01-03T23:10:03.004Z",
+      "email": "ankit@uci.edu",
+      "id": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+      "username": "ankit",
+      "ftueComplete": false,
+      "badge": 0
+    }
+  }
 }
 ```
 
@@ -2892,15 +2893,15 @@ This method is called to check if two users are blocked to each other. Returns a
 This method is called to get blocked users joined with user info.
 
 #### RPC Method Name
-`blocks.getBlockedUsers`
+`blocks.getBlockBetweenUsers`
 
 #### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| method | String | The name of the method to call on the server API. In this case: `blocks.getBlockedUsers`. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `blocks.getBlockBetweenUsers`. |
 | params | Object | Contains fields needed to perform the action. |
 | params.fromUId | String | User initiating the block |
 | params.toUId | String | User getting blocked to fromUId network. |
@@ -2910,7 +2911,7 @@ This method is called to get blocked users joined with user info.
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | Object | Blocked object joined with both the user models. |
 
 
@@ -2919,7 +2920,7 @@ This method is called to get blocked users joined with user info.
 
 
 
-##  Get all the users blocked by a single user by passing in the fromUId.
+###  Get Users I am blocking.
 ```json
 "POST /rpc HTTP/1.1"
 ```
@@ -2930,7 +2931,7 @@ This method is called to get blocked users joined with user info.
   "id": "1234",
   "method": "blocks.blockedUsersForMe",
   "params": {
-  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038"
+    "userId": "45dcb0a4-38d2-4381-a4ea-f5d866445038"
   }
 }
 ```
@@ -2945,20 +2946,20 @@ This method is called to get blocked users joined with user info.
 {
   "jsonrpc": "2.0",
   "id": "1234",
-  "result":    [
-                   {
-                     "createdAt": "2017-03-21T17:47:59.551Z",
-                     "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-                     "id": "c4d88db5-09f9-4970-977a-a417e0d9e369",
-                     "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
-                   },
-                   {
-                     "createdAt": "2017-03-21T17:47:03.462Z",
-                     "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-                     "id": "e3fd48e9-c266-448b-ba8a-56a74cae0b80",
-                     "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
-                   }
-                 ]
+  "result": [
+    {
+      "createdAt": "2017-03-21T17:47:59.551Z",
+      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+      "id": "c4d88db5-09f9-4970-977a-a417e0d9e369",
+      "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+    },
+    {
+      "createdAt": "2017-03-21T17:47:03.462Z",
+      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+      "id": "e3fd48e9-c266-448b-ba8a-56a74cae0b80",
+      "toUId": "82cd8e8a-5f4e-4d8f-96d8-973be966c4e2"
+    }
+  ]
 }
 ```
 
@@ -2973,17 +2974,17 @@ This method is called to get all the users blocked by a single user by passing i
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `blocks.blockedUsersForMe`. |
 | params | Object | Contains fields needed to perform the action. |
-| params.fromUId | String | User initiating the block |
+| params.userId | String | User initiating the block |
 
 #### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | Object | Array of blocked data models. |
 
 
@@ -2992,7 +2993,7 @@ This method is called to get all the users blocked by a single user by passing i
 
 
 
-##  Get all the users that has blocked a given user, passing in toUId.
+###  Get all the users that has blocked a given user, passing in toUId.
 ```json
 "POST /rpc HTTP/1.1"
 ```
@@ -3003,7 +3004,7 @@ This method is called to get all the users blocked by a single user by passing i
   "id": "1234",
   "method": "blocks.iAmBlockedBy",
   "params": {
-  "toUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038"
+    "userId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
   }
 }
 ```
@@ -3018,23 +3019,22 @@ This method is called to get all the users blocked by a single user by passing i
 {
   "jsonrpc": "2.0",
   "id": "1234",
-  "result":    [
-                   {
-                     "createdAt": "2017-03-21T17:47:59.551Z",
-                     "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-                     "id": "c4d88db5-09f9-4970-977a-a417e0d9e369",
-                     "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
-                   },
-                   {
-                     "createdAt": "2017-03-21T17:47:03.462Z",
-                     "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-                     "id": "e3fd48e9-c266-448b-ba8a-56a74cae0b80",
-                     "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
-                   }
-                 ]
+  "result": [
+     {
+       "createdAt": "2017-03-21T17:47:59.551Z",
+       "fromUId": "82cd8e8a-5f4e-4d8f-96d8-973be966c4e2",
+       "id": "c4d88db5-09f9-4970-977a-a417e0d9e369",
+       "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+     },
+     {
+       "createdAt": "2017-03-21T17:47:03.462Z",
+       "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+       "id": "e3fd48e9-c266-448b-ba8a-56a74cae0b80",
+       "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+     }
+   ]
 }
 ```
-
 
 This method is called to get all the users that has blocked a given user, passing in toUId.
 
@@ -3046,17 +3046,17 @@ This method is called to get all the users that has blocked a given user, passin
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `blocks.iAmBlockedBy`. |
 | params | Object | Contains fields needed to perform the action. |
-| params.toUId | String | User has been blocked. |
+| params.userId | String | User Id of the user who has been blocked. |
 
 #### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | Array | Array of blocked data models. |
 
 
@@ -3065,7 +3065,7 @@ This method is called to get all the users that has blocked a given user, passin
 
 
 
-##  Functionality to remove a block between two users.
+###  Remove A Block
 ```json
 "POST /rpc HTTP/1.1"
 ```
@@ -3076,8 +3076,8 @@ This method is called to get all the users that has blocked a given user, passin
   "id": "1234",
   "method": "blocks.removeUsersBlock",
   "params": {
-  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-  "toUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038"
+    "blockId": "82cd8e8a-5f4e-4d8f-96d8-973be966c4e2",
+    "callerId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b"
   }
 }
 ```
@@ -3107,18 +3107,18 @@ This method is called to get all the users that has blocked a given user, passin
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `blocks.removeUsersBlock`. |
 | params | Object | Contains fields needed to perform the action. |
-| params.fromUId | String | User that initiated the block. |
-| params.toUId | String | User has been blocked. |
+| params.blockId | String | The id of the [Block](#block) object . |
+| params.callerId | String | The id of the user (fromUId) that would like to lift the [Block](#block). |
 
 #### Response Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | String | response that the object is removed from the db. |
 
 
@@ -3134,7 +3134,7 @@ This method is called to get all the users that has blocked a given user, passin
 
 
 
-## Report a user
+### Report a user
 ```json
 "POST /rpc HTTP/1.1"
 ```
@@ -3145,9 +3145,9 @@ This method is called to get all the users that has blocked a given user, passin
   "id": "1234",
   "method": "reports.reportUser",
   "params": {
-  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
-   "reason": 1
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "reason": 1
   }
 }
 ```
@@ -3163,8 +3163,8 @@ This method is called to get all the users that has blocked a given user, passin
   "jsonrpc": "2.0",
   "id": "1234",
   "result": {
-   "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-   "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+    "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
     "createdAt": "2017-03-21T18:39:26.495Z",
     "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
     "reason": 1,
@@ -3175,16 +3175,15 @@ This method is called to get all the users that has blocked a given user, passin
 
 This method is called upon by a user to report another user in the app for a particular reason. Pass in the integer value for reason why this user is being reported.
 
-
 #### RPC Method Name
 `reports.reportUser`
 
-### Request Attributes
+#### Request Attributes
 
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | method | String | The name of the method to call on the server API. In this case: `reports.reportUser`. |
 | params | Object | Contains fields needed to perform the action. |
 | params.fromUId | String | User reporting |
@@ -3196,7 +3195,7 @@ This method is called upon by a user to report another user in the app for a par
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
-| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The seerver will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
 | result | Object | Contains the reported object just inserted in the db, contains an integer value of reason and a integer value indicating the status of this report. |
 
 
@@ -3211,7 +3210,7 @@ This method is called upon by a user to report another user in the app for a par
 
 
 
-## Notification Model and payload object information.
+### Notification Model and payload object information.
 ```json
 "POST /rpc HTTP/1.1"
 ```
@@ -3232,19 +3231,19 @@ This method is called upon by a user to report another user in the app for a par
 
 > The notification object looks something like this:
 
-```json
+```javascript
     const channelKey = 'gotchuu_push:' + userId;
     
 		let pushPayload = {
-			"pn_apns": {
-				"aps" : {
-					"alert": {
-						'title' : title,  //notification title
-						'body' :  body,  //notification custom build message
-						'action-loc-key': action  //action to be taken upon user checking this notification
+			pn_apns: {
+				aps : {
+					alert: {
+						title: title,  //notification title
+						body:  body,  //notification custom build message
+						action-loc-key: action  //action to be taken upon user checking this notification
 					},
-					"badge": badge,  //integer value to show number of notifications
-					"sound": pushObj.sound
+					badge: badge,  //integer value to show number of notifications
+					sound: pushObj.sound
 				}
 			},
 			data: data, //any custom object to be consumed by client; currently none.
