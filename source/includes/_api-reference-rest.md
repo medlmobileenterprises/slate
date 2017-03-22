@@ -1,5 +1,10 @@
 # API Reference REST
 
+All endpoints will resolve with the following host (domain) name/address:
+
+`http://gotcha-dev.us-east-1.elasticbeanstalk.com`
+
+
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 

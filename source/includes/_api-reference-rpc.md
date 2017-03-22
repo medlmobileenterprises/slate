@@ -2,7 +2,7 @@
 
 All endpoints will resolve with the following host (domain) name/address:
 
-`http://localhost:3000`
+`http://gotcha-dev.us-east-1.elasticbeanstalk.com`
 
 
 [//]: # (==================================================================================================)
