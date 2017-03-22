@@ -1731,10 +1731,356 @@ This method is used to create a user request to reset their password. This metho
 
 
 [//]: # (==================================================================================================)
+### Clear User's Badge Count
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.clearUserBadge",
+  "params": {
+    "userId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "badge": 0,
+    "createdAt": "2017-03-21T01:27:43.904Z",
+    "fbId": "00019283674",
+    "ftueComplete": false,
+    "id": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b",
+    "username": "testing001"
+  }
+}
+```
+
+```json-doc
+```
+
+The purpose of this method is to control the user's app Icon badge count and clear it back to 0 when the user enters the app. This will aid in the methods that send out a push notification to increment a count that reflects a user's actions within the application. For example, If a user has recieved a couple push notifications, the user will see an app icon badge of '2'. The user then enters the application, the OS will clear the badge and the client app will call this method to clear the badge count back to 0. If user exists app again and recieves 3 more notifications, the app icon badge will reflect the proper count of '3' rather than '5' (then accumulation of all push notifications received in the user's short life time thus far).
+
+#### RPC Method Name
+`users.clearUserBadge`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.clearUserBadge`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.userId | String | The user id for the user we want to clear the badge count for. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | The simple [User](#user) object with the updated badge count field (which sould be at 0). |
+
+
+[//]: # (==================================================================================================)
+### Mark Completed FTUE
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.completedFTUE",
+  "params": {
+    "userId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "badge": 0,
+    "createdAt": "2017-03-21T01:27:43.904Z",
+    "fbId": "00019283674",
+    "ftueComplete": true,
+    "id": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b",
+    "username": "testing001"
+  }
+}
+```
+
+```json-doc
+```
+
+The purpose of this method is only to persist the event that a user has completed the FTUE (first time user experience). This aids the API in generating the [ActivityFeedItem](#activityfeeditem) for a user that has completed the FTUE.
+
+#### RPC Method Name
+`users.completedFTUE`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.completedFTUE`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.userId | String | The user id for the user we want to record that has completed the FTUE. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | The simple [User](#user) object with the updated ftueCompleted field (which sould be true). |
+
+
+[//]: # (==================================================================================================)
+### Fetch Activity Feed
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.fetchActivityFeed",
+  "params": {
+    "userId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b",
+    "lastActivityDate": "2017-03-21T01:27:43.904Z",
+    "pageSize": 20
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": [
+    {
+      "actType": 3,
+      "appId": "gotchuu",
+      "createdAt": "2017-03-22T04:46:17.497Z",
+      "id": "7e4201fa-b64f-410d-bf03-96632b68e000",
+      "ownerId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b",
+      "seen": false,
+      "owner": {
+        "badge": 0,
+        "createdAt": "2017-03-21T01:27:43.904Z",
+        "extendedProfile": {
+          "createdAt": "2017-03-21T01:27:43.924Z",
+          "id": "069514da-ea9b-48a3-94c4-fba83cd750d8",
+          "isComplete": false,
+          "profileImages": [],
+          "userId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b"
+        },
+        "fbId": "00019283674",
+        "ftueComplete": true,
+        "id": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b",
+        "inventory": {
+          "baseInvCount": 75,
+          "createdAt": "2017-03-21T01:27:43.924Z",
+          "id": "e045be15-1651-4531-9e16-13e37fcd6bfe",
+          "items": [],
+          "level": 1,
+          "userId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b"
+        },
+        "username": "testing001"
+      },
+      "bodyText": "Tutorial completed!"
+    }
+  ]
+}
+```
+
+```json-doc
+```
+
+The purpose of this method is to retrieve a list of [ActivityFeedItems](#activityfeeditem) for the given user. This is a paginiated response where the pageSize is defaulted to **20**. The paginiation style is setup for an infinite scroller where by providing the `lastActivityDate`, the API will return the next set of activity feed items starting from that timestamp with the amount specified by the `pageSize`. There are a couple different types of activity feed items so reference the [ActivityFeedItems](#activityfeeditem) model to get an idea of the potential fields that a response object can contain.
+
+#### RPC Method Name
+`users.fetchActivityFeed`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.fetchActivityFeed`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.userId | String | The user id for the user we want to record that has completed the FTUE. |
+| params.lastActivityDate | String | **Optional** The date of the last activity you retrieved in ISO8601 format preferred. |
+| params.pageSize | Number | **Optional** The total amount of objects you would like returned in the result. ***Default is 20*** |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Array<[ActivityFeedItem](#activityfeeditem)> | An array of [ActivityFeedItems](#activityfeeditem). |
+
+
+[//]: # (==================================================================================================)
+### Mark Activity Feed Items as Read
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.markActivityAsRead",
+  "params": {
+    "userId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "updated": 2
+  }
+}
+```
+
+```json-doc
+```
+
+The purpose of this method is to mark all activity feed items as read once a user enters the [ActivityFeedItems](#activityfeeditem) list within the client application. This will aid the API in being able to provide the client app information about a user and if they have any "unseen" activity feed items so they can display some kind of indicator.
+
+#### RPC Method Name
+`users.markActivityAsRead`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.markActivityAsRead`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.userId | String | The user id for the user we want to mark their actiivty feed items as read for. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | A simple result object with a single field `updated`. |
+| result.updated | Number | A count of the amount of activity feed items that have been marked as "seen". |
+
+
+[//]: # (==================================================================================================)
+### Fetch Unseen Activity Feed Item Count
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.fetchActivityUnreadCount",
+  "params": {
+    "userId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "count": 2
+  }
+}
+```
+
+```json-doc
+```
+
+The purpose of this method is to simply retrieve the amount of activity feed items the given user has yet to "see".
+
+#### RPC Method Name
+`users.fetchActivityUnreadCount`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.fetchActivityUnreadCount`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.userId | String | The user id for the user we want to retrieve the amount of "unseen" activity feed items for. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | A simple result object with a single field `count`. |
+| result.count | Number | A count of the amount of activity feed items that have not been "seen" yet. |
+
+
+[//]: # (==================================================================================================)
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
-
 
 ## Engagements
 
@@ -3216,13 +3562,10 @@ This method is called upon by a user to report another user in the app for a par
 ```
 
 ```json
-
- 
-  {
+{
   "userId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
-   "channelKey": "gotchuu_push:81cd8e07-3031-42de-9f30-b71b40d7eaab"
-  }
-
+  "channelKey": "gotchuu_push:81cd8e07-3031-42de-9f30-b71b40d7eaab"
+}
 ```
 
 ```json-doc
