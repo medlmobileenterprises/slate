@@ -672,7 +672,7 @@ Expected to be created for a user as soon they are registered with our app.
 
 ```json
 {
-  "channelKey": "e59b23b9-abcd-4241-a405-097cc2ba50e9_somekey",
+  "channelKey": "gotchuu_push:e59b23b9-abcd-4241-a405-097cc2ba50e9",
   "userId": "e59b23b9-abcd-4241-a405-097cc2ba50e9",
   "createdAt": "2017-03-21T01:08:59.976Z",
   "id": "84e4257c-b84e-46dd-a43c-356774069ca0"
@@ -686,6 +686,27 @@ Expected to be created for a user as soon they are registered with our app.
   "createdAt": "2017-03-21T01:08:59.976Z",
   "id": "84e4257c-b84e-46dd-a43c-356774069ca0"
 }
+```
+
+> The notification object looks something like this when it is sent out through PubNub.
+
+```javascript
+  const channelKey = 'gotchuu_push:' + userId;
+    
+  let pushPayload = {
+    pn_apns: {
+      aps : {
+        alert: {
+          title: "",  // notification title
+          body: "",  // notification custom build message
+          action-loc-key: ""  // action to be taken upon user checking this notification
+        },
+        badge: badge,  // integer value to show number of notifications
+        sound: ""
+      }
+    },
+    data: {}, // any custom object to be consumed by client.
+  };
 ```
 
 | Parameter | Type | Description |

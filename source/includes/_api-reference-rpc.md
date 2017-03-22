@@ -900,7 +900,8 @@ This method will serve two purposes; it will require a location object with the 
     },
     "username": "blargasaurus",
     "inventory": {},
-    "extendedProfile": {}
+    "extendedProfile": {},
+    "notifyInfo": {}
   }
 }
 ```
@@ -970,7 +971,7 @@ This endpoint accepts a single argument `access_token` the was given by the Face
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
-| result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. Also includes the complete [ExtendedProfile](#extended-profile) for a found user with facebook login. |
+| result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. Also includes the complete [ExtendedProfile](#extended-profile) for a found user with facebook login. Finally, this response is also going to include the [Notification](#notification) object in the `notifyInfo` field. |
 
 
 [//]: # (==================================================================================================)
@@ -1085,7 +1086,7 @@ This method accepts a single parameter in the `params` property of the request c
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with |
-| result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. Also includes the complete [ExtendedProfile](#extended-profile) for a found user with facebook login. |
+| result | Object | Contains the [UserModel](#user) that has the full [Inventory](#inventory) details, including [Item](#item) details. Also includes the complete [ExtendedProfile](#extended-profile) for a found user with facebook login. Finally, this response is also going to include the [Notification](#notification) object in the `notifyInfo` field. |
 
 
 [//]: # (==================================================================================================)
@@ -3548,52 +3549,3 @@ This method is called upon by a user to report another user in the app for a par
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
-## Notification
-
-
-[//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
-
-
-
-### Notification Model and payload object information.
-```json
-"POST /rpc HTTP/1.1"
-```
-
-```json
-{
-  "userId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
-  "channelKey": "gotchuu_push:81cd8e07-3031-42de-9f30-b71b40d7eaab"
-}
-```
-
-```json-doc
-
-```
-
-> The notification object looks something like this:
-
-```javascript
-    const channelKey = 'gotchuu_push:' + userId;
-    
-		let pushPayload = {
-			pn_apns: {
-				aps : {
-					alert: {
-						title: title,  //notification title
-						body:  body,  //notification custom build message
-						action-loc-key: action  //action to be taken upon user checking this notification
-					},
-					badge: badge,  //integer value to show number of notifications
-					sound: pushObj.sound
-				}
-			},
-			data: data, //any custom object to be consumed by client; currently none.
-		};
-    
-    
-```
-
-[//]: # (==================================================================================================)
-[//]: # (==================================================================================================)
