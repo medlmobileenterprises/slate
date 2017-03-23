@@ -846,14 +846,20 @@ This is the represntation of the `ActivityFeedItem` object in the database.
 }
 ```
 
-```json-doc
+> This is a representation of an activity feed item and the fields to expect for `actType` 5. This is a special type of activity that represents the event of a user blocking another user. What makes this unique from the others is the roles of the `ownerId` and the `appUsrId` have switched, where the `ownerId` is the creator/initiator of this event and the `appUsrId` is the receiver of the event. This was done since the `owner` is the one who should see this activity in their feed to give them the opportunity to "unblock" a user from this acitivty item.
+
+```json
 {
-  "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-  "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
-  "status": 1,
-  "reason": 1,
-  "createdAt": "2017-03-21T18:39:26.495Z",
-  "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514"
+  "actType": 4,
+  "appId": "gotchuu",
+  "createdAt": "2017-03-18T03:04:25.324Z",
+  "id": "f96773cf-5fe3-48bd-9a37-967fdd760b54",
+  "ownerId": "fe883474-f89c-4d60-9017-4f5a7d3bbef2",
+  "seen": false,
+  "owner": {},
+  "user": {},
+  "block": {},
+  "bodyText": "You have blocked [username]. | You have removed the block on [username]."
 }
 ```
 
@@ -870,6 +876,7 @@ This is the represntation of the `ActivityFeedItem` object in the database.
 | owner | Object<[User](#user)> | This could be included in the model when returned by the API. This would be the object representation of the user who should see this activity feed item in their activity feed list where the subject describes an event "toward" this user. Retrieved using the `ownerId` field of this activity feed item. Will generally contain the full user profile data excluding the `inventory` as it is deemed unnecessary at this point. |
 | user | Object<[User](#user)> | This could be included in the model when returned by the API. This would be the object representation of the user who is the one who triggered the creation of the activity feed item. Retrieved using the `appUsrId` from this activity feed item. The object will contain the most basic user profile information, enough to display the Main profile picture, name, and age if needed. |
 | relationship | Object<[Relationship](#relationship)> | This could be included in the model when returned by the API. This is the object representation of the `appSubId`, in this case a relationship. |
+| block | Object<[Block](#block)> | This could be included in the model when returned by the API. This is the object representation of the `appSubId`, when the `actType = 5` which signifies that this was a block event. **NOTE: For this activity type, the `ownerId` and `appUsrId` roles are switched where the `onwerId` is the creator/initiator of the event and the `appUsrId` is the receiver of the event. All other activity itmes thus far are the opposite, where the `ownerId` is the reciever and the `appUsrId` is the creator/initiator.** |
 | bodyText | String | This is the standard copy that should describe what this activity feed item even means. |
 
 ### Activity Feed Item Types
@@ -881,4 +888,5 @@ This is the represntation of the `ActivityFeedItem` object in the database.
 | 2 | NEW_CHALLENGE | Created when a user initiates a fight with another user (but not when the fight is in response/retaliation to another user). |
 | 3 | FTUE | Created when a user completes the FTUE. |
 | 4 | PROFILE_COMPLETE | Created when a user fills out all the fields in their profile. |
+| 5 | BLOCK_USER | Created when a User blocks another user. This actiivty type is unique in the fact that the owner is the one initiating the event instead of recieving the event. Essentially the owner and appUsr switch roles where the `ownerId` will represent the creator of the event and the `appUsrId` will represent the userId that the block was created against. |
 
