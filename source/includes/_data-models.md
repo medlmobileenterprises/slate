@@ -850,7 +850,7 @@ This is the represntation of the `ActivityFeedItem` object in the database.
 
 ```json
 {
-  "actType": 4,
+  "actType": 5,
   "appId": "gotchuu",
   "createdAt": "2017-03-18T03:04:25.324Z",
   "id": "f96773cf-5fe3-48bd-9a37-967fdd760b54",
