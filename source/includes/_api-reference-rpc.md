@@ -881,7 +881,8 @@ This method will serve two purposes; it will require a location object with the 
     },
     "username": "blargasaurus",
     "inventory": {},
-    "extendedProfile": {}
+    "extendedProfile": {},
+    "notifyInfo": {}
   }
 }
 ```
@@ -1022,7 +1023,8 @@ This endpoint accepts a single argument `access_token` the was given by the Face
       "level": 1,
       "userId": "a4b4799d-55ef-41de-aa62-ef47a6d5b3da"
     },
-    "username": "testing001"
+    "username": "testing001",
+    "notifyInfo": {}
   }
 }
 ```
