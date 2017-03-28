@@ -95,7 +95,49 @@ This method is used to upload a profile image for a user. This method can only b
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
+### Delete a User's image
 
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"PUT /api/users/deleteAnImage"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+
+```
+
+This method gets a specific desired report from the db.
+
+#### RESTful path
+`/api/users/deleteAnImage`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| userId | String | user id   |
+| fileId | String | id of the file to be deleted. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Object | user object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
 
 ## Reports
 
@@ -156,8 +198,7 @@ This method gets a specific desired report from the db.
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
 
-
-### Get All Reports
+### Get Reported User's reason count
 
 ```json
 "RPC method not supported for this type of function"
@@ -167,7 +208,7 @@ This method gets a specific desired report from the db.
 ```
 
 ```json-doc
-"GET /api/report/getAll"
+"GET /api/report/:userId/eachUserReportCount"
 ```
 
 > The above command returns JSON structured like this:
@@ -180,21 +221,108 @@ This method gets a specific desired report from the db.
   "success": true,
   "result": [
     {
-      "createdAt": "2017-03-21T18:39:26.495Z",
-      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-      "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
       "reason": 1,
-      "status": 1,
-      "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+      "reasonCount": 3
     },
     {
-          "createdAt": "2017-03-21T18:39:26.495Z",
+      "reason": 2,
+      "reasonCount": 2
+    },
+    {
+      "reason": 3,
+      "reasonCount": 9
+    }
+  ]
+}
+```
+
+This method gets a specific desired report from the db.
+
+#### RESTful path
+`/api/report/:userId/eachUserReportCount`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| userId | String | ID of the report client is seraching for. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Array | Report Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+### Get All Reports
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"GET /api/report/getAllOpenReports"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": [
+    {
+      "reportedUser": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+      "reports": [
+        {
+          "createdAt": "2017-03-24T22:40:05.660Z",
           "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-          "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
-          "reason": 1,
+          "id": "d537c451-bfe4-42c4-bdd8-6bf9b52ce9a0",
+          "reason": 3,
           "status": 1,
-          "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
-     }
+          "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+          "toUser": {
+            "banned": false,
+            "city": "irvine",
+            "createdAt": "2017-01-03T23:10:03.004Z",
+            "email": "ankit@uci.edu",
+            "id": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+            "username": "ankit",
+            "itemLevel": 1,
+            "ftueComplete": false,
+            "badge": 0
+          }
+        },
+        {
+          "createdAt": "2017-03-24T22:40:05.414Z",
+          "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
+          "id": "20596f6d-d99d-4939-b2a5-82e1fd7ea039",
+          "reason": 3,
+          "status": 1,
+          "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+          "toUser": {
+            "banned": false,
+            "city": "irvine",
+            "createdAt": "2017-01-03T23:10:03.004Z",
+            "email": "ankit@uci.edu",
+            "id": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+            "username": "ankit",
+            "itemLevel": 1,
+            "ftueComplete": false,
+            "badge": 0
+          }
+        }
+      ],
+      "reportsCount": 2
+    }
   ]
 }
 ```
@@ -202,7 +330,7 @@ This method gets a specific desired report from the db.
 This method gets all the reports in db.
 
 #### RESTful path
-`/api/report/getAll`
+`/api/report/getAllOpenReports`
 
 #### Form Data Fields
 
@@ -567,6 +695,123 @@ This method gets a specific desired report from the db.
 | ---- | ---- | ---- |
 | success | Boolean | If successful, this value will be true |
 | result | Object | User Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+
+
+## Extended Profile
+
+[//]: # (==================================================================================================)
+### Get a User's Extended Profile
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"GET /api/extendedProfile/:userId/extendedProfile"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": {
+    "banned": false,
+    "city": "irvine",
+    "createdAt": "2017-01-03T23:10:03.004Z",
+    "email": "ankit@uci.edu",
+    "id": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "username": "ankit",
+    "itemLevel": 1,
+    "ftueComplete": false,
+    "badge": 0
+  }
+}
+```
+
+This method gets a specific desired report from the db.
+
+#### RESTful path
+`/api/extendedProfile/:userId/extendedProfile`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| userId | String | user id of the needed extended profile |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Array | Extended Profile Model Object |
+
+[//]: # (==================================================================================================)
+[//]: # (==================================================================================================)
+
+### Update a User's Extended Profile
+
+```json
+"RPC method not supported for this type of function"
+```
+
+```json
+```
+
+```json-doc
+"PUT /api/extendedProfile/:userId/updateProfile"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+```
+
+```json-doc
+{
+  "success": true,
+  "result": {
+    "banned": false,
+    "city": "irvine",
+    "createdAt": "2017-01-03T23:10:03.004Z",
+    "email": "ankit@uci.edu",
+    "id": "81cd8e07-3031-42de-9f30-b71b40d7eaab",
+    "username": "ankit",
+    "itemLevel": 1,
+    "ftueComplete": false,
+    "badge": 0
+  }
+}
+```
+
+This method gets a specific desired report from the db.
+
+#### RESTful path
+`/api/extendedProfile/:userId/updateProfile`
+
+#### Form Data Fields
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| userId | String | user id of the updating extended profile |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| success | Boolean | If successful, this value will be true |
+| result | Array | Extended Profile Model Object |
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
