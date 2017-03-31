@@ -1801,6 +1801,162 @@ The purpose of this method is to control the user's app Icon badge count and cle
 
 
 [//]: # (==================================================================================================)
+
+### Delete a User's Image
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.clearUserBadge",
+  "params": {
+    "userId": "3d7d185b-2a53-4bb2-996e-ba38ab6f80a4",
+    "fileId": "d7d185b-2a53-4bb2-996e-ba38ab6f80a4"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "badge": 0,
+    "banned": false,
+    "city": "irvine",
+    "createdAt": "2017-01-04T02:00:53.906Z",
+    "email": "ankitv@uci.edu",
+    "id": "3d7d185b-2a53-4bb2-996e-ba38ab6f80a4",
+    "username": "ankit",
+    "ftueComplete": false
+  }
+}
+```
+
+```json-doc
+```
+
+The purpose of this method is for client to remove on of their images.
+
+#### RPC Method Name
+`users.deleteAnImage`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.deleteAnImage`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.userId | String | The user id for the user |
+| params.fileId | String | The file if of the image we want to remove. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | The simple [User](#user) object with the updated badge count field (which sould be at 0). |
+
+
+[//]: # (==================================================================================================)
+
+
+### Getting an Item by its id
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.getItemDetails",
+  "params": {
+    "itemId": "3d7d185b-2a53-4bb2-996e-ba38ab6f80a4"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "animType": 4,
+    "bitsColor": {
+      "b": 58,
+      "g": 166,
+      "r": 216
+    },
+    "createdAt": "2017-02-25T02:26:29.990Z",
+    "damage": 19,
+    "description": "Relatively hard off-white sharp-tasting natural cheese with a pungent flavor.",
+    "id": "1e059de9-1dda-495a-ab80-fbab015080ea",
+    "image": "sharpCheddar",
+    "level": 18,
+    "name": "Sharp Cheddar",
+    "particleColor": {
+      "b": 72,
+      "g": 205,
+      "r": 255
+    },
+    "rarity": 2,
+    "splatColor": {
+      "b": 58,
+      "g": 166,
+      "r": 216
+    },
+    "type": 2
+  }
+}
+```
+
+```json-doc
+```
+
+The purpose of this method is for client to remove on of their images.
+
+#### RPC Method Name
+`users.getItemDetails`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.getItemDetails`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.itemId | String | The item id for the item. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | The simple [User](#user) object with the updated badge count field (which sould be at 0). |
+
+
+[//]: # (==================================================================================================)
 ### Mark Completed FTUE
 ```json
 "POST /rpc HTTP/1.1"
