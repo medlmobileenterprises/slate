@@ -1811,7 +1811,7 @@ The purpose of this method is to control the user's app Icon badge count and cle
 {
   "jsonrpc": "2.0",
   "id": "1234",
-  "method": "users.clearUserBadge",
+  "method": "users.deleteAnImage",
   "params": {
     "userId": "3d7d185b-2a53-4bb2-996e-ba38ab6f80a4",
     "fileId": "d7d185b-2a53-4bb2-996e-ba38ab6f80a4"
@@ -1830,14 +1830,7 @@ The purpose of this method is to control the user's app Icon badge count and cle
   "jsonrpc": "2.0",
   "id": "1234",
   "result": {
-    "badge": 0,
-    "banned": false,
-    "city": "irvine",
-    "createdAt": "2017-01-04T02:00:53.906Z",
-    "email": "ankitv@uci.edu",
-    "id": "3d7d185b-2a53-4bb2-996e-ba38ab6f80a4",
-    "username": "ankit",
-    "ftueComplete": false
+    "message": "Success"
   }
 }
 ```
@@ -1845,7 +1838,7 @@ The purpose of this method is to control the user's app Icon badge count and cle
 ```json-doc
 ```
 
-The purpose of this method is for client to remove on of their images.
+The purpose of this method is for client to remove one of their images. This is a permanent delete from the database AND the cloud storage so we should be sure this action should take place before making the call.
 
 #### RPC Method Name
 `users.deleteAnImage`
@@ -1867,7 +1860,7 @@ The purpose of this method is for client to remove on of their images.
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| result | Object | The simple [User](#user) object with the updated badge count field (which sould be at 0). |
+| result | Object | This will be a simple object with a `message` key stating the method was as success. |
 
 
 [//]: # (==================================================================================================)
@@ -1932,7 +1925,7 @@ The purpose of this method is for client to remove on of their images.
 ```json-doc
 ```
 
-The purpose of this method is for client to remove on of their images.
+The purpose of this method is to retrieve the item details by the item's ID.
 
 #### RPC Method Name
 `users.getItemDetails`
@@ -1953,7 +1946,7 @@ The purpose of this method is for client to remove on of their images.
 | ---- | ---- | ---- |
 | jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
 | id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
-| result | Object | The simple [User](#user) object with the updated badge count field (which sould be at 0). |
+| result | [Item](#item) | The [Item](#item) object containing the details of this item. |
 
 
 [//]: # (==================================================================================================)

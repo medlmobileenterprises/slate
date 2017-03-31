@@ -117,7 +117,7 @@ This method is used to upload a profile image for a user. This method can only b
 
 ```
 
-This method gets a specific desired report from the db.
+This method will remove a profile image from a users extended profile and delete the image from the cloud storage location.
 
 #### RESTful path
 `/api/users/deleteAnImage`
@@ -134,7 +134,7 @@ This method gets a specific desired report from the db.
 | Parameter | Type | Description |
 | ---- | ---- | ---- |
 | success | Boolean | If successful, this value will be true |
-| result | Object | user object |
+| result | [User](#user) | Returns a user object with profile information |
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
