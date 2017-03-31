@@ -1802,7 +1802,7 @@ The purpose of this method is to control the user's app Icon badge count and cle
 
 [//]: # (==================================================================================================)
 
-### Delete a User's Image
+### Delete User Profile Image
 ```json
 "POST /rpc HTTP/1.1"
 ```
