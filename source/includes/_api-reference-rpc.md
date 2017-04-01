@@ -2232,6 +2232,132 @@ The purpose of this method is to simply retrieve the amount of activity feed ite
 
 
 [//]: # (==================================================================================================)
+### Change User Password
+
+```json
+"POST /rpc HTTP/1.1"
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "method": "users.changePassword",
+  "params": {
+    "userId": "0706744d-d0bd-4f0b-a5e9-3f3c49aad20b",
+    "oldPass": "test123",
+    "newPass": "test1234"
+  }
+}
+```
+
+```json-doc
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "message": "Success"
+  }
+}
+```
+
+> The following result is when the userId does not match a user in our records
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "code": 400,
+    "message": "User was not found by the id provided"
+  }
+}
+```
+
+> The following result is when the "oldPass" field does not match up to the password currently saved for the user
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "code": 400,
+    "message": "Current password is incorrect"
+  }
+}
+```
+
+> The following result is when we are missing either the "oldPass" field or "newPass" field
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "code": 400,
+    "message": "Insufficient data"
+  }
+}
+```
+
+> The following result is when the "userId" field was not provided or missing
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "1234",
+  "result": {
+    "code": 400,
+    "message": "No UserId was found"
+  }
+}
+```
+
+```json-doc
+{
+  "name": "SocialAuthError",
+  "message": "No record found for this Facebook account",
+  "code": 1000
+}
+```
+
+```json-doc
+```
+
+The purpose of this method is to change a user's password, providing that they pass the correct old password. 
+
+#### RPC Method Name
+`users.changePassword`
+
+#### Request Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| method | String | The name of the method to call on the server API. In this case: `users.changePassword`. |
+| params | Object | Contains fields needed to perform the action. |
+| params.userId | String | The user Id of the user that we want to change the password for. |
+| params.oldPass | String | The password that should match match the password saved for the user currently. |
+| params.newPass | String | The password we should update the user with. |
+
+#### Response Attributes
+
+| Parameter | Type | Description |
+| ---- | ---- | ---- |
+| jsonrpc | String | Defines what version of the JSON-RPC the call is utilizing. |
+| id | String | Used in the JSON-RPC 2.0 specificaion. The value tells the server that the client expects results back. The server will return data in the "result" field as well as pass the same "id" value back so the client knows what request the data returned is associated with. |
+| result | Object | A simple result object with a single field `message`. |
+| result.message | String | A simple message stating that the password update was successsful. |
+
+
+[//]: # (==================================================================================================)
 
 [//]: # (==================================================================================================)
 [//]: # (==================================================================================================)
