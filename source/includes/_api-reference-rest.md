@@ -370,21 +370,113 @@ This method gets all the reports in db.
   "success": true,
   "result": [
     {
-      "createdAt": "2017-03-21T18:39:26.495Z",
-      "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-      "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
+      "createdAt": "2017-04-03T20:00:17.929Z",
+      "fromUId": "a323c93b-401d-44b5-a942-d634faaf9afd",
+      "fromUser": {
+        "badge": 19,
+        "banned": false,
+        "createdAt": "2017-03-30T23:24:53.503Z",
+        "curPoint": {
+          "$reql_type$": "GEOMETRY",
+          "coordinates": [
+            -117.7142,
+            33.65099
+          ],
+          "type": "Point"
+        },
+        "fbId": "10158205739545594",
+        "ftueComplete": false,
+        "id": "a323c93b-401d-44b5-a942-d634faaf9afd",
+        "itemLevel": 7,
+        "location": {
+          "latitude": 33.65099,
+          "longitude": -117.7142
+        },
+        "updatedAt": "2017-04-03T20:08:22.211Z",
+        "username": "Amir"
+      },
+      "id": "b1865702-ec8c-418e-9e12-3a416a7ab3d2",
       "reason": 1,
-      "status": 1,
-      "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
+      "status": 0,
+      "toUId": "a216f86a-2637-4706-9e6c-8dd9beb32046",
+      "toUser": {
+        "badge": 23,
+        "banned": false,
+        "createdAt": "2017-03-30T01:25:57.689Z",
+        "curPoint": {
+          "$reql_type$": "GEOMETRY",
+          "coordinates": [
+            -117.7144,
+            33.65086
+          ],
+          "type": "Point"
+        },
+        "fbId": "272037379896255",
+        "ftueComplete": false,
+        "id": "a216f86a-2637-4706-9e6c-8dd9beb32046",
+        "itemLevel": 18,
+        "location": {
+          "latitude": 33.65086,
+          "longitude": -117.7144
+        },
+        "updatedAt": "2017-04-03T20:20:21.813Z",
+        "username": "DammadHatta"
+      }
     },
     {
-          "createdAt": "2017-03-21T18:39:26.495Z",
-          "fromUId": "45dcb0a4-38d2-4381-a4ea-f5d866445038",
-          "id": "c3105b78-61e1-48a4-ba95-30eb8df7d514",
-          "reason": 1,
-          "status": 1,
-          "toUId": "81cd8e07-3031-42de-9f30-b71b40d7eaab"
-     }
+      "createdAt": "2017-04-03T18:54:33.288Z",
+      "fromUId": "a323c93b-401d-44b5-a942-d634faaf9afd",
+      "fromUser": {
+        "badge": 19,
+        "banned": false,
+        "createdAt": "2017-03-30T23:24:53.503Z",
+        "curPoint": {
+          "$reql_type$": "GEOMETRY",
+          "coordinates": [
+            -117.7142,
+            33.65099
+          ],
+          "type": "Point"
+        },
+        "fbId": "10158205739545594",
+        "ftueComplete": false,
+        "id": "a323c93b-401d-44b5-a942-d634faaf9afd",
+        "itemLevel": 7,
+        "location": {
+          "latitude": 33.65099,
+          "longitude": -117.7142
+        },
+        "updatedAt": "2017-04-03T20:08:22.211Z",
+        "username": "Amir"
+      },
+      "id": "1b9c0ad3-16ea-449e-a354-9620e6e37cc9",
+      "reason": 1,
+      "status": 0,
+      "toUId": "a216f86a-2637-4706-9e6c-8dd9beb32046",
+      "toUser": {
+        "badge": 23,
+        "banned": false,
+        "createdAt": "2017-03-30T01:25:57.689Z",
+        "curPoint": {
+          "$reql_type$": "GEOMETRY",
+          "coordinates": [
+            -117.7144,
+            33.65086
+          ],
+          "type": "Point"
+        },
+        "fbId": "272037379896255",
+        "ftueComplete": false,
+        "id": "a216f86a-2637-4706-9e6c-8dd9beb32046",
+        "itemLevel": 18,
+        "location": {
+          "latitude": 33.65086,
+          "longitude": -117.7144
+        },
+        "updatedAt": "2017-04-03T20:20:21.813Z",
+        "username": "DammadHatta"
+      }
+    }
   ]
 }
 ```
